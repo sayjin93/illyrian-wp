@@ -1,0 +1,218 @@
+/*Globals of WP*/
+body.toplevel_page_config_plugin #wpcontent {
+    padding-left: 0;
+}
+
+.form-table tr.header {
+    margin: 0;
+    padding: 5px 0 5px 10px;
+    line-height: 35px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #7f8591;
+    background-color: #f7f8fa;
+    border: 1px solid #e4e9ee;
+}
+
+.form-table td {
+    padding: 5px 10px;
+}
+
+/*Header*/
+.illyrian-header {
+    position: relative;
+    margin: 0;
+    height: 119px;
+    background: #f3f5ff url(../img/waves.png) no-repeat;
+
+}
+
+.illyrian-header-title {
+    padding-top: 25px;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.illyrian-header-mascot {
+    float: right;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 10px;
+    margin-right: 20px;
+    z-index: 100;
+}
+
+/*Body*/
+.illyrian-body {
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.illyrian-body-content {
+    float: left;
+    padding-bottom: 65px;
+    width: 100%;
+}
+
+.illyrian-nav-container {
+    display: table;
+    margin: 0;
+    width: 100%;
+    border: 0;
+    background-color: #0a487b;
+
+}
+
+.illyrian-nav-item {
+    float: left;
+    border: none;
+    text-decoration: none;
+}
+
+.illyrian-main-nav-item {
+    margin: 0;
+    padding: 0 15px;
+    line-height: 50px;
+    font-size: 13px;
+    text-align: center;
+    color: #d8d7e4;
+}
+
+.illyrian-main-nav-item.illyrian-spacing-item {
+    width: 5px;
+    padding-left: 0;
+}
+
+.illyrian-main-nav-item.illyrian-active {
+    color: #434751;
+    opacity: 1;
+    background-color: #fff;
+}
+
+/*Page*/
+.illyrian-settings-pages {
+    padding: 20px 0;
+    margin: 0 20px;
+}
+
+/*Form Table*/
+.illyrian-settings-pages .form-table {
+    border: 1px solid #e4e9ee;
+    border-radius: 3px;
+}
+
+.illyrian-settings-pages .form-table tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.illyrian-settings-pages .form-table tr:last-child {
+    border-bottom: 0;
+}
+
+.illyrian-settings-pages .form-table tr span {
+    display: inline-block;
+    min-width: 70px;
+}
+
+.illyrian-settings-pages .form-table th {
+    font-size: 13px;
+    background-color: #f7f8fa;
+    font-weight: 500;
+    line-height: 45px;
+    width: 200px;
+    margin: 0;
+    padding: 5px 0 5px 10px;
+    text-decoration: none;
+    color: #7f8591;
+    border-bottom: 1px solid #e4e9ee;
+    border-right: 1px solid #e4e9ee;
+}
+
+.illyrian-settings-pages .form-table .description {
+    color: #7f8592;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.illyrian-settings-pages .button {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    padding: 0 16px 1px;
+    height: 33px;
+    line-height: 30px;
+    text-decoration: none;
+    text-shadow: none;
+    font-weight: 600;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.illyrian-settings-pages .button.button-primary {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #fff;
+    border: 1px solid #3ca489;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    background-color: #47c1a5;
+}
+
+.illyrian-settings-pages .button.button-secondary {
+    color: #555;
+    border-color: #ccc;
+    background: #f7f7f7;
+    -webkit-box-shadow: 0 1px 0 #ccc;
+    box-shadow: 0 1px 0 #ccc;
+    vertical-align: top;
+}
+
+/*Notification*/
+.illyrian-notice {
+    border: 1px solid;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    box-sizing: border-box;
+    display: table;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.illyrian-success-notice {
+    border-color: #47c1a5;
+    background-color: rgba(71, 194, 165, 0.1);
+}
+
+.illyrian-info-notice {
+    border-color: #479be7;
+    background-color: rgba(72, 155, 232, 0.1);
+}
+
+.illyrian-notice-text {
+    color: #434751;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 0 60px 0 20px;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    display: table-cell;
+    position: relative;
+    vertical-align: middle;
+}
+
+.illyrian-notice:after {
+    content: "";
+    display: table;
+    clear: both;
+}

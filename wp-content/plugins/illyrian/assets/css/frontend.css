@@ -1,0 +1,7 @@
+.illyrian_div {
+    display: none;
+    position: absolute;
+    width: 300px;
+    height: 250px;
+    z-index: 999;
+}
