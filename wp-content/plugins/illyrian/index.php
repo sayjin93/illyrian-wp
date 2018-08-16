@@ -32,7 +32,6 @@ function my_plugin_action_links( $links, $plugin_file ) {
 	return $links;
 }
 
-
 /* Register plugin menu page */
 add_action( 'admin_menu', 'wp_illyrian_admin_menu' );
 
@@ -53,10 +52,12 @@ function wp_illyrian_admin_menu() {
 }
 
 /* Illyrian Dashboard */
-function illyrian_page() {
-	$license = wpls_sample_get_license_data();
-	$valid   = $license->valid;
+function illyrian_page( $action = 'validate' ) {
+	$license   = get_option( 'wpls_sample_license_key', '' );
+	$email     = get_option( 'wpls_sample_license_email', '' );
+	$authorize = sample_authorize_action( $license, $email, $action );
 	?>
+
     <div class="illyrian-header">
         <img class="illyrian-header-title" src=" <?php echo plugin_image ?>logo.png" alt="">
         <img class="illyrian-header-mascot" src="<?php echo plugin_image ?>mascot.png" alt="">
@@ -76,9 +77,8 @@ function illyrian_page() {
                    href="admin.php?page=illyrian_plugin_license">
                     Activate License</a>
             </h1>
-
             <div class="illyrian-settings-pages">
-				<?php if ( $valid == 'true' ) {
+				<?php if ( $authorize->valid ) {
 					if ( isset( $_POST['submit'] ) && $_POST['action'] == 'form_submit' ) {
 						update_option( "active", $_POST['active'] );
 						update_option( "debug", $_POST['debug'] );
@@ -366,16 +366,16 @@ function illyrian_page() {
                                                        href="admin.php?page=illyrian_plugin_license">in this link.</a>
                     </p>
 				<?php } ?>
-            </div><!-- End illyrian-body-settings-pages -->
-        </div><!-- End illyrian-body-content-->
-    </div><!-- End illyrian-body -->
+            </div>
+        </div>
+    </div>
 	<?php
 }
 
 /* Activate License */
 function illyrian_plugin_license() {
-	$license = get_option( 'wpls_sample_license_key' );
-	$status  = get_option( 'wpls_sample_license_status' );
+	$license = get_option( 'wpls_sample_license_key', '' );
+	$email   = get_option( 'wpls_sample_license_email', '' );
 	?>
     <div class="illyrian-header">
         <img class="illyrian-header-title" src="<?php echo plugin_image ?>logo.png" alt="">
@@ -397,58 +397,42 @@ function illyrian_plugin_license() {
                     Activate License</a>
             </h1>
             <div class="illyrian-settings-pages">
-                <form method="post" action="options.php">
-					<?php settings_fields( 'wpls_sample_license' ); ?>
-                    <table class="form-table">
+                <form method="post" id="sample-verify">
+                    <input type="hidden" id="sample-action" name="sample-action"
+                           value="<?= sample_serial_valid() ? 'sample_license_deactivate' : 'sample_license_activate'; ?>"/>
+                    <table class="wp-list-table widefat tags ui-sortable">
                         <tbody>
-                        <tr valign="top">
-                            <th scope="row" valign="top">
-                                <label for="wpls_sample_license_url"><?php _e( 'Where you get license?' ); ?></label>
-                            </th>
+                        <tr>
+                            <td valign="top"><label for="sample-license">License Key:</label></td>
                             <td>
-								<?php _e( 'Please visit <a href="https://jkruja.com/product/illyrian-wp-plugin/">this link</a> to get your license.' ); ?>
+                                <input class="textfield" name="sample-license" size="50" type="text" id="sample-license"
+                                       value="<?php echo $license; ?>" required/>
+                                <p class="description"><?php _e( 'Valid License  to make All feature work correctly', 'wpls' ) ?></p>
                             </td>
                         </tr>
-                        <tr valign="top">
-                            <th scope="row" valign="top">
-                                <label for="wpls_sample_license_key"><?php _e( 'License Key:' ); ?></label>
-                            </th>
+                        <tr>
+                            <td valign="top"><label for="sample-license">Email:</label></td>
                             <td>
-                                <input id="wpls_sample_license_key" name="wpls_sample_license_key" type="text"
-                                       class="regular-text" value="<?php esc_attr_e( $license ); ?>"/>
-                                <p class="description"><?php _e( 'Enter your license key' ); ?></p>
+                                <input class="textfield" name="sample-email" size="50" type="text" id="sample-email"
+                                       value="<?php echo $email; ?>" required/>
+                                <p class="description"><?php _e( 'Please provide your registered email with us', 'wpls' ) ?></p>
                             </td>
                         </tr>
-						<?php if ( false !== $license ) { ?>
-                            <tr valign="top">
-                                <th scope="row" valign="top">
-                                    <label for="act_button"><?php _e( 'Action Button:' ); ?></label>
-                                </th>
-                                <td>
-									<?php if ( $status == 'true' ) { ?><?php wp_nonce_field( 'wpls_sample_nonce', 'wpls_sample_nonce' ); ?>
-                                        <input type="submit" class="button-secondary" name="wpls_license_deactivate"
-                                               value="<?php _e( 'Deactivate License' ); ?>"/><span
-                                                style="color:green;"><?php _e( 'Active' ); ?></span>
-									<?php } else {
-										wp_nonce_field( 'wpls_sample_nonce', 'wpls_sample_nonce' ); ?>
-                                        <input type="submit" class="button-secondary" name="wpls_license_activate"
-                                               value="<?php _e( 'Activate License' ); ?>"/>
-									<?php } ?>
-                                </td>
-                            </tr>
-                            <tr valign="top">
-                                <th scope="row" valign="top"><?php _e( 'License data' ); ?></th>
-                                <td>
-									<?php $license = wpls_sample_get_license_data();
-									echo '<pre>';
-									print_r( $license->info );
-									echo '</pre>'; ?>
-                                </td>
-                            </tr>
-						<?php } ?>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="submit" class="button-primary" id="saveS" name="saveS"
+                                       value="<?= sample_serial_valid() ? __( 'Deactivate' ) : __( 'Activate' ); ?>">
+                                <p class="pesan"></p>
+                            </td>
+                        </tr>
+                        <tr id="sample-status" style="<?= sample_serial_valid() ? '' : 'display:none;'; ?>">
+                            <td colspan="2" id="td-status">
+								<?php echo '<pre>', print_r( sample_authorize_action( $license, $email ), 1 ), '</pre>'; ?>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
-					<?php submit_button(); ?>
                 </form>
             </div>
         </div>
