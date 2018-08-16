@@ -18,7 +18,7 @@ function wp_illyrian_admin_menu() {
 		'manage_options',
 		'illyrian_plugin',
 		'illyrian_page',
-//		    plugin_image . 'icon.png',
+//	    plugin_image . 'icon.png',
 		'dashicons-megaphone',
 		6
 	);
