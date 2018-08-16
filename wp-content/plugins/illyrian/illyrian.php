@@ -1,16 +1,41 @@
 <?php
 /*
-Plugin Name: Illyrian WP
-Plugin URI: http://jkruja.com/illyrian
-Description: Illustrates how to include an updater in your plugin for Wordpress Licensing System
-Author: Jurgen Kruja
-Author URI: http://jkruja.com
-Version: 1.1
+    Plugin Name: Illyrian WP
+    Plugin URI: https://jkruja.com/products/illyrian-wp-plugin/
+    Description: ClickJacking plugin in every element you want.
+    Author: Jurgen Kruja
+    Author URI: http://jkruja.com
+    Version: 1.1
+	Author URI: httpa://jkruja.com/
 */
 
 require_once 'constants.php';
 
+/* Add the plugin link in Plugins Page. */
+add_filter( 'plugin_action_links', 'my_plugin_action_links', 10, 5 );
+function my_plugin_action_links( $links, $plugin_file ) {
+	static $plugin;
+
+	if ( ! isset( $plugin ) ) {
+		$plugin = plugin_basename( __FILE__ );
+	}
+	if ( $plugin == $plugin_file ) {
+
+		$dashboard = array( 'dashboard' => '<a href="' . esc_url( admin_url( 'admin.php?page=illyrian_plugin' ) ) . '">Dashboard</a>' );
+		$license   = array( 'license' => '<a href="' . esc_url( admin_url( 'admin.php?page=illyrian_plugin_license' ) ) . '">License</a>' );
+
+		$links = array_merge( $license, $links );
+		$links = array_merge( $dashboard, $links );
+
+	}
+
+	return $links;
+}
+
+
 /* Register plugin menu page */
+add_action( 'admin_menu', 'wp_illyrian_admin_menu' );
+
 function wp_illyrian_admin_menu() {
 	add_menu_page(
 		"WP Illyrian Plugin",
@@ -33,7 +58,7 @@ function illyrian_page() {
 	$valid   = $license->valid;
 	?>
     <div class="illyrian-header">
-        <img class="illyrian-header-title" src="<?php echo plugin_image ?>logo.png" alt="">
+        <img class="illyrian-header-title" src=" <?php echo plugin_image ?>logo.png" alt="">
         <img class="illyrian-header-mascot" src="<?php echo plugin_image ?>mascot.png" alt="">
     </div>
     <div class="illyrian-body" role="main">
@@ -430,5 +455,3 @@ function illyrian_plugin_license() {
     </div>
 	<?php
 }
-
-add_action( 'admin_menu', 'wp_illyrian_admin_menu' );
