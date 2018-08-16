@@ -1,3 +1,22 @@
+/*Make plugin icon in 3 status*/
+#adminmenu #toplevel_page_illyrian_plugin div.wp-menu-image::before {
+    width: 20px;
+    height: 20px;
+    content: "";
+    background-size: 18px;
+    background-repeat: no-repeat;
+    background-position: 1px 50%;
+    background-image: url(../img/icon-default.png);
+}
+
+#adminmenu #toplevel_page_illyrian_plugin.opensub div.wp-menu-image::before {
+    background-image: url(../img/icon-hover.png);
+}
+
+#adminmenu #toplevel_page_illyrian_plugin.wp-menu-open div.wp-menu-image::before {
+    background-image: url(../img/icon-selected.png);
+}
+
 /*Globals of WP*/
 body.toplevel_page_config_plugin #wpcontent {
     padding-left: 0;

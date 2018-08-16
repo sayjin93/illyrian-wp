@@ -5,7 +5,7 @@ Plugin URI: http://jkruja.com/illyrian
 Description: Illustrates how to include an updater in your plugin for Wordpress Licensing System
 Author: Jurgen Kruja
 Author URI: http://jkruja.com
-Version: 1.0
+Version: 1.1
 */
 
 require_once 'constants.php';
@@ -18,8 +18,8 @@ function wp_illyrian_admin_menu() {
 		'manage_options',
 		'illyrian_plugin',
 		'illyrian_page',
-//	    plugin_image . 'icon.png',
-		'dashicons-megaphone',
+//		plugin_image . 'icon-fefaut.png',
+		'',
 		6
 	);
 
