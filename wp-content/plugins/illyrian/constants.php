@@ -68,7 +68,7 @@ if ( ! class_exists( 'IllyrianClass' ) ) {
 			wp_enqueue_script( 'jquery' );
 			wp_enqueue_script( 'jscookies', plugin_assets . 'js/cookies.js' );
 			wp_enqueue_script( 'devtool', plugin_assets . 'js/devtools_detect.js' );
-			wp_enqueue_script( 'jdetects', plugin_assets . 'js/jdetects.js' );
+			wp_enqueue_script( 'jdetects', plugin_assets . 'js/jdetects.min.js' );
 			wp_enqueue_script( 'jkscript', plugin_assets . 'js/frontend_scripts.js' );
 		}
 	}

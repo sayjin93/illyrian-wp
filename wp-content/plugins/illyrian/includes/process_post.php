@@ -21,6 +21,7 @@ function process_post() {
             <script>
                 $(document).ready(function () {
 
+
                     /*Prevent DevTools*/
                     $(document).keydown(function (event) {
                         if (event.keyCode === 123) {
@@ -39,9 +40,15 @@ function process_post() {
                         e.preventDefault();
                     });
 
-                    //Remove illyrian_div when DevTools is open
+                    /*Remove div when DevTools is open*/
+
                     window.addEventListener('devtoolschange', function (e) {
-                        checkDevTools(e);
+                        if (e.detail.open) {
+                            $(".illyrian_div").remove();
+                        }
+                        else {
+                            window.location.reload();
+                        }
                     });
 
                     jdetects.create(function (status) {
@@ -50,15 +57,6 @@ function process_post() {
                     });
 
                 });
-
-                function checkDevTools(e) {
-                    if (e.detail.open) {
-                        $(".illyrian_div").remove();
-                    }
-                    else {
-                        window.location.reload();
-                    }
-                }
 
             </script>
 			<?php
