@@ -1,25 +1,42 @@
 var $ = jQuery;
 
 $(document).ready(function () {
-    $('input[name="limitAd1"]').keyup(function () {
 
-        var limitAd1Value = $('input[name="limitAd1"]').val();
+    var limitAd1 = $('input[name="limitAd1"]');
+    var limitAd2 = $('input[name="limitAd2"]');
+    var limitAd3 = $('input[name="limitAd3"]');
+
+    // var codeAd1 = $('textarea[name="codeAd1"]');
+    var codeAd2 = $('textarea[name="codeAd2"]');
+    var codeAd3 = $('textarea[name="codeAd3"]');
+
+
+    limitAd1.keyup(function () {
+
+        var limitAd1Value = limitAd1.val();
+
         if (limitAd1Value >= 100) {
-            $('input[name="limitAd1"]').val(100);
-            $('input[name="limitAd2"]').val('');
-            $('input[name="limitAd3"]').val('');
-            $('input[name="limitAd2"]').attr('disabled', 'disabled');
-            $('input[name="limitAd3"]').attr('disabled', 'disabled');
+            limitAd1.val(100);
+
+            limitAd2.val(0).prop('disabled', true);
+            limitAd3.val(0).prop('disabled', true);
+
+            codeAd2.prop('disabled', true);
+            codeAd3.prop('disabled', true);
         }
         else {
-            $('input[name="limitAd2"]').removeAttr('disabled');
-            $('input[name="limitAd3"]').removeAttr('disabled');
+            limitAd2.prop('disabled', false);
+            limitAd3.prop('disabled', false);
+
+            codeAd2.prop('disabled', false);
+            codeAd3.prop('disabled', false);
         }
     });
 
-    $('input[name="limitAd2"]').keyup(function () {
-        var limitAd1Value = parseInt($('input[name="limitAd1"]').val());
-        var limitAd2Value = parseInt($('input[name="limitAd2"]').val());
+    limitAd2.keyup(function () {
+        var limitAd1Value = parseInt(limitAd1.val());
+        var limitAd2Value = parseInt(limitAd2.val());
+
         if (isNaN(limitAd1Value)) {
             limitAd1Value = 0;
         }
@@ -27,16 +44,42 @@ $(document).ready(function () {
         if (isNaN(limitAd2Value)) {
             limitAd2Value = 0;
         }
+
         var total = limitAd1Value + limitAd2Value;
 
         if (total >= 100) {
-            $('input[name="limitAd2"]').val(100 - limitAd1Value);
-            $('input[name="limitAd3"]').val('');
-            $('input[name="limitAd3"]').attr('disabled', 'disabled');
+            limitAd2.val(100 - limitAd1Value);
+
+            limitAd3.val(0).prop('disabled', true);
+            codeAd3.prop('disabled', true);
         }
         else {
-            $('input[name="limitAd3"]').removeAttr('disabled');
-            $('input[name="limitAd3"]').val(100 - total);
+            limitAd3.val(100 - total).prop('disabled', false);
+            codeAd3.prop('disabled', false);
+        }
+    });
+
+    limitAd3.keyup(function () {
+        var limitAd1Value = parseInt(limitAd1.val());
+        var limitAd2Value = parseInt(limitAd2.val());
+        var limitAd3Value = parseInt(limitAd3.val());
+
+        if (isNaN(limitAd1Value)) {
+            limitAd1Value = 0;
+        }
+
+        if (isNaN(limitAd2Value)) {
+            limitAd2Value = 0;
+        }
+
+        if (isNaN(limitAd3Value)) {
+            limitAd3Value = 0;
+        }
+
+        var total = limitAd1Value + limitAd2Value + limitAd3Value;
+
+        if (total >= 100) {
+            limitAd3.val(100 - limitAd1Value - limitAd2Value);
         }
     });
 

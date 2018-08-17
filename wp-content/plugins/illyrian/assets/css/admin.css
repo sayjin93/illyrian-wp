@@ -18,7 +18,8 @@
 }
 
 /*Globals of WP*/
-body.toplevel_page_illyrian_plugin #wpcontent {
+body.toplevel_page_illyrian_plugin #wpcontent,
+body.illyrian-plugin_page_illyrian_plugin_license #wpcontent {
     padding-left: 0;
 }
 
@@ -99,6 +100,11 @@ body.toplevel_page_illyrian_plugin #wpcontent {
     color: #d8d7e4;
 }
 
+.illyrian-main-nav-item:focus {
+    color: #00a0d2;
+    box-shadow: none;
+}
+
 .illyrian-main-nav-item.illyrian-spacing-item {
     width: 5px;
     padding-left: 0;
@@ -158,7 +164,6 @@ body.toplevel_page_illyrian_plugin #wpcontent {
 .illyrian-settings-pages .button {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
-    -o-border-radius: 3px;
     border-radius: 3px;
     padding: 0 15px;
     height: 33px;

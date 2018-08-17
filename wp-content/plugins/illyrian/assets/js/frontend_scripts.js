@@ -1,4 +1,7 @@
 /*  Remove jkdiv if it is not gallery post  */
+/**
+ * @return {boolean}
+ */
 function RemoveIfNotGallery(selector) {
     if (jQuery(selector).length < 1) {
         jQuery('.illyrian_div').remove();
