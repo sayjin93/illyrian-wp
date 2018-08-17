@@ -6,13 +6,14 @@
     Author: Jurgen Kruja
     Author URI: http://jkruja.com
     Version: 1.1
-	Author URI: httpa://jkruja.com/
+	Author URI: https://jkruja.com/
 */
 
 require_once 'constants.php';
 
 /* Add the plugin link in Plugins Page. */
 add_filter( 'plugin_action_links', 'my_plugin_action_links', 10, 5 );
+
 function my_plugin_action_links( $links, $plugin_file ) {
 	static $plugin;
 
@@ -54,8 +55,7 @@ function wp_illyrian_admin_menu() {
 /* Illyrian Dashboard */
 function illyrian_page( $action = 'validate' ) {
 	$license   = get_option( 'wpls_sample_license_key', '' );
-	$email     = get_option( 'wpls_sample_license_email', '' );
-	$authorize = sample_authorize_action( $license, $email, $action );
+	$authorize = sample_authorize_action( $license, $action );
 	?>
 
     <div class="illyrian-header">
@@ -335,7 +335,7 @@ function illyrian_page( $action = 'validate' ) {
                                 </td>
                             </tr>
 
-                            <!-- Cutom CSS -->
+                            <!-- Custom CSS -->
                             <tr>
                                 <th scope="row">Custom CSS</th>
                                 <td>
@@ -375,14 +375,13 @@ function illyrian_page( $action = 'validate' ) {
 /* Activate License */
 function illyrian_plugin_license() {
 	$license = get_option( 'wpls_sample_license_key', '' );
-	$email   = get_option( 'wpls_sample_license_email', '' );
 	?>
     <div class="illyrian-header">
         <img class="illyrian-header-title" src="<?php echo plugin_image ?>logo.png" alt="">
         <img class="illyrian-header-mascot" src="<?php echo plugin_image ?>mascot.png" alt="">
     </div>
     <div class="illyrian-body" role="main">
-        <div class="illyrian-body-content">
+        <div class="illyrian-body-content nosubsub">
             <h1 class="illyrian-nav-container">
                 <a class="illyrian-main-nav-item illyrian-nav-item illyrian-spacing-item" href="#">&nbsp;</a>
 
@@ -411,14 +410,6 @@ function illyrian_plugin_license() {
                             </td>
                         </tr>
                         <tr>
-                            <td valign="top"><label for="sample-license">Email:</label></td>
-                            <td>
-                                <input class="textfield" name="sample-email" size="50" type="text" id="sample-email"
-                                       value="<?php echo $email; ?>" required/>
-                                <p class="description"><?php _e( 'Please provide your registered email with us', 'wpls' ) ?></p>
-                            </td>
-                        </tr>
-                        <tr>
                             <td></td>
                             <td>
                                 <input type="submit" class="button-primary" id="saveS" name="saveS"
@@ -428,7 +419,9 @@ function illyrian_plugin_license() {
                         </tr>
                         <tr id="sample-status" style="<?= sample_serial_valid() ? '' : 'display:none;'; ?>">
                             <td colspan="2" id="td-status">
-								<?php echo '<pre>', print_r( sample_authorize_action( $license, $email ), 1 ), '</pre>'; ?>
+								<?php echo '<p><b>Domain:</b> ', print_r( sample_authorize_action( $license )->info->domain, 1 ), '</p>'; ?>
+								<?php echo '<p><b>Expire:</b> ', print_r( sample_authorize_action( $license )->info->expire, 1 ), '</p>'; ?>
+								<?php echo '<p><b>Status: <span style="color:green;">', print_r( sample_authorize_action( $license )->info->status, 1 ), '</span></b></p>'; ?>
                             </td>
                         </tr>
                         </tbody>

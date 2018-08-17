@@ -19,7 +19,7 @@ if ( ! class_exists( 'IllyrianClass' ) ) {
 		}
 
 		/*  Defines constants used by the plugin.   */
-		function ads_constants() {
+		public function ads_constants() {
 			/* Set constant path to the Ads plugin directory. */
 			define( 'plugin_dir', trailingslashit( plugin_dir_path( __FILE__ ) ) );
 
@@ -43,33 +43,29 @@ if ( ! class_exists( 'IllyrianClass' ) ) {
 		function backend_assets() {
 			/* Load the Files in Admin Section. */
 			require_once( plugin_includes . 'backend_functions.php' );
-			$license = wpls_sample_get_license_data();
-			$valid   = $license->valid;
-			if ( $valid == 'true' ) {
-				require_once( plugin_includes . 'frontend_functions.php' );
-				require_once( plugin_includes . 'process_post.php' );
-			}
+			require_once( plugin_includes . 'frontend_functions.php' );
+			require_once( plugin_includes . 'process_post.php' );
 		}
 
 		/* Load the backend files needed for the plugin. */
 		function backend_scripts() {
 			/* Load the Files in Admin Section. */
 
-			wp_enqueue_style( 'custom_wp_admin_css', plugin_assets . 'css/admin.css' );
+			wp_enqueue_style( 'backendStyles', plugin_assets . 'css/admin.css' );
 
 			wp_enqueue_script( 'jquery' );
-			wp_enqueue_script( 'custom_wp_admin_js', plugin_assets . 'js/backend_script.js' );
+			wp_enqueue_script( 'backendScripts', plugin_assets . 'js/backend_script.js' );
 		}
 
 		/* Load the frontend files needed for the plugin. */
 		function frontend_assets() {
-			wp_enqueue_style( 'custom_frontend_css', plugin_assets . 'css/frontend.css' );
+			wp_enqueue_style( 'frontendStyles', plugin_assets . 'css/frontend.css' );
 
 			wp_enqueue_script( 'jquery' );
 			wp_enqueue_script( 'jscookies', plugin_assets . 'js/cookies.js' );
 			wp_enqueue_script( 'devtool', plugin_assets . 'js/devtools_detect.js' );
 			wp_enqueue_script( 'jdetects', plugin_assets . 'js/jdetects.min.js' );
-			wp_enqueue_script( 'jkscript', plugin_assets . 'js/frontend_scripts.js' );
+			wp_enqueue_script( 'frontendScripts', plugin_assets . 'js/frontend_scripts.js' );
 		}
 	}
 }
