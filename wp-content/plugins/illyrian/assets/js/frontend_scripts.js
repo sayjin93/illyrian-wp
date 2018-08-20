@@ -1,4 +1,4 @@
-/*  Remove jkdiv if it is not gallery post  */
+/*  Remove ad_div if it is not gallery post  */
 /**
  * @return {boolean}
  */
@@ -22,11 +22,11 @@ function PlaceCookieClicked(time) {
 /*  Change position of ad   */
 function PositionAd(selector, opacity) {
     setTimeout(function () {
-        var myposition = jQuery(selector).offset();
+        var myPosition = jQuery(selector).offset();
 
-        var mypositionTop = myposition.top - Math.floor(Math.random() * 125);
-        var mypositionLeft = myposition.left - Math.floor(Math.random() * 150);
+        var myPositionTop = myPosition.top - Math.floor(Math.random() * 125);
+        var myPositionLeft = myPosition.left - Math.floor(Math.random() * 150);
 
-        jQuery('.illyrian_div').attr('style', 'display: block; opacity: ' + opacity + '; top:' + mypositionTop + 'px;left:' + mypositionLeft + 'px;');
+        jQuery('.illyrian_div').attr('style', 'display: block; opacity: ' + opacity + '; top:' + myPositionTop + 'px;left:' + myPositionLeft + 'px;');
     }, 1000);
 }
