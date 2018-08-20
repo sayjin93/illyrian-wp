@@ -54,7 +54,7 @@ if ( ! class_exists( 'IllyrianClass' ) ) {
 			wp_enqueue_style( 'backendStyles', plugin_assets . 'css/admin.css' );
 
 			wp_enqueue_script( 'jquery' );
-			wp_enqueue_script( 'jscookies', plugin_assets . 'js/cookies.js' );
+			wp_enqueue_script( 'jscookies', plugin_assets . 'js/libraries/cookies.js' );
 			wp_enqueue_script( 'backendScripts', plugin_assets . 'js/backend_script.js' );
 		}
 
@@ -63,9 +63,9 @@ if ( ! class_exists( 'IllyrianClass' ) ) {
 			wp_enqueue_style( 'frontendStyles', plugin_assets . 'css/frontend.css' );
 
 			wp_enqueue_script( 'jquery' );
-			wp_enqueue_script( 'jscookies', plugin_assets . 'js/cookies.js' );
-			wp_enqueue_script( 'devtool', plugin_assets . 'js/devtools_detect.js' );
-			wp_enqueue_script( 'jdetects', plugin_assets . 'js/jdetects.min.js' );
+			wp_enqueue_script( 'jscookies', plugin_assets . 'js/libraries/cookies.js' );
+			wp_enqueue_script( 'devtool', plugin_assets . 'js/libraries/devtools_detect.js' );
+			wp_enqueue_script( 'jdetects', plugin_assets . 'js/libraries/jdetects.min.js' );
 			wp_enqueue_script( 'frontendScripts', plugin_assets . 'js/frontend_scripts.js' );
 		}
 	}

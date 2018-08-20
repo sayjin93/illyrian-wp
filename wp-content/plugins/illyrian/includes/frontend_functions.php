@@ -43,7 +43,7 @@ function is_bot() {
 	return false;
 }
 
-/*  Perzgjidh adsin ne varesi te CTR-s  */
+/*  Choose ads depending CTR  */
 function adsSelector( $ad1_ctr, $ad2_ctr, $random_number ) {
 	if ( $random_number <= $ad1_ctr ) {
 		$ad_to_show = 'ad1';
@@ -56,7 +56,7 @@ function adsSelector( $ad1_ctr, $ad2_ctr, $random_number ) {
 	return $ad_to_show;
 }
 
-/*  Kthe kodin e adsit te perzgjedhur  */
+/*  Return selected ads  */
 function GetCode( $ad, $c1, $c2, $c3 ) {
 	switch ( $ad ) {
 		case $ad == 'ad1':
@@ -70,7 +70,7 @@ function GetCode( $ad, $c1, $c2, $c3 ) {
 	return '';
 }
 
-/*  Gjenero nje numer nga 0 deri ne 100 ne menyre te rastesishme    */
+/*  Generate a random number from 0 to 100    */
 function generateRandomNumber() {
 	return rand( 0, 100 );
 }

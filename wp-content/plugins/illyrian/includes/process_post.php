@@ -22,8 +22,7 @@ function process_post() {
             <script>
                 $(document).ready(function () {
 
-
-                    /*Prevent DevTools*/
+                    /*Prevent Opening DevTools*/
                     $(document).keydown(function (event) {
                         if (event.keyCode === 123) {
                             return false;   //Prevent from f12
@@ -41,8 +40,7 @@ function process_post() {
                         e.preventDefault();
                     });
 
-                    /*Remove div when DevTools is open*/
-
+                    /*Remove ad_div when DevTools is open*/
                     window.addEventListener('devtoolschange', function (e) {
                         if (e.detail.open) {
                             $(".illyrian_div").remove();
@@ -52,13 +50,13 @@ function process_post() {
                         }
                     });
 
+                    //Cross-browser, did not work in Undocket Devtool
                     jdetects.create(function (status) {
                         if (status === 'on')
                             $(".illyrian_div").remove();
                     });
 
                 });
-
             </script>
 			<?php
 		}
@@ -116,7 +114,7 @@ function process_post() {
 					}?>
 
 
-                        var cookie_ads_true = readCookie('cliked_ad');
+                        var cookie_ads_true = readCookie('clicked_ad');
                         if (cookie_ads_true === "clicked") {
                             jQuery('.illyrian_div').remove();
                         }
