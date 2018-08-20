@@ -79,7 +79,7 @@ function illyrian_page( $action = 'validate' ) {
             </h1>
             <div class="illyrian-settings-pages">
 				<?php if ( $authorize->valid ) {
-					if ( isset( $_POST['submit'] ) && $_POST['action'] == 'form_submit' ) {
+					if ( isset( $_POST['save'] ) && $_POST['action'] == 'form_submit' ) {
 						update_option( "active", $_POST['active'] );
 						update_option( "debug", $_POST['debug'] );
 						update_option( "element", $_POST['element'] );
@@ -135,6 +135,16 @@ function illyrian_page( $action = 'validate' ) {
                         </div>
 						<?php
 					}
+					if ( isset( $_POST['clearCookies'] ) && $_POST['action'] == 'form_submit' ) {
+						?>
+
+                        <div class="illyrian-notice illyrian-info-notice">
+                            <div class="illyrian-notice-text illyrian-info-notice-text">
+                                <p class="illyrian-notice-message">Cookies cleared successfully.</p>
+                            </div>
+                        </div>
+						<?php
+					}
 					?>
                     <form action="" id="plugin-form" method="post">
                         <table class="form-table">
@@ -172,6 +182,9 @@ function illyrian_page( $action = 'validate' ) {
                                        value="off" <?php if ( get_option( 'debug' ) == 'off' ) {
 	                                echo 'checked="checked"';
                                 } ?> >Off
+                                </span>
+                                    <span><input type="submit" name="clearCookies" class="button button-primary"
+                                                 onclick="ClearCookies()" value="Clear Cookies"/>
                                 </span>
                                 </td>
                             </tr>
@@ -349,10 +362,9 @@ function illyrian_page( $action = 'validate' ) {
                             <tr>
                                 <th></th>
                                 <td>
-                                    <input type="submit" name="submit" class="button button-primary"
-                                           value="Save Changes"> &nbsp;&nbsp;&nbsp; <input type="submit" name="reset"
-                                                                                           class="button button-secondary"
-                                                                                           value="Reset">
+                                    <input type="submit" name="save" class="button button-primary"
+                                           value="Save Changes"/> &nbsp;&nbsp;&nbsp;
+                                    <input type="submit" name="reset" class="button button-secondary" value="Reset"/>
                                     <input type="hidden" name="action" value="form_submit"/>
 
                                 </td>

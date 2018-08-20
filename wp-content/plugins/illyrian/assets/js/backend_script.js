@@ -6,7 +6,6 @@ $(document).ready(function () {
     var limitAd2 = $('input[name="limitAd2"]');
     var limitAd3 = $('input[name="limitAd3"]');
 
-    // var codeAd1 = $('textarea[name="codeAd1"]');
     var codeAd2 = $('textarea[name="codeAd2"]');
     var codeAd3 = $('textarea[name="codeAd3"]');
 
@@ -84,3 +83,9 @@ $(document).ready(function () {
     });
 
 });
+
+/*  Delete cookies when Clear Cookies button is clicked  */
+function ClearCookies() {
+    eraseCookie('visit');
+    eraseCookie('clicked_ad');
+}
