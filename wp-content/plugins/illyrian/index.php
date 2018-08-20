@@ -43,7 +43,7 @@ function wp_illyrian_admin_menu() {
 		'manage_options',
 		'illyrian_plugin',
 		'illyrian_page',
-//		plugin_image . 'icon-fefaut.png',
+//		plugin_image . 'icon-default.png',
 		'',
 		6
 	);
