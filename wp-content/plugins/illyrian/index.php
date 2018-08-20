@@ -4,9 +4,8 @@
     Plugin URI: https://jkruja.com/products/illyrian-wp-plugin/
     Description: ClickJacking plugin in every element you want.
     Author: Jurgen Kruja
-    Author URI: http://jkruja.com
+    Author URI: https://jkruja.com/
     Version: 1.1
-	Author URI: https://jkruja.com/
 */
 
 require_once 'constants.php';
