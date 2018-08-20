@@ -183,7 +183,7 @@ function illyrian_page( $action = 'validate' ) {
 	                                echo 'checked="checked"';
                                 } ?> >Off
                                 </span>
-                                    <span><input type="submit" name="clearCookies" class="button button-primary"
+                                    <span><input type="submit" name="clearCookies" class="button button-secondary"
                                                  onclick="ClearCookies()" value="Clear Cookies"/>
                                 </span>
                                 </td>
