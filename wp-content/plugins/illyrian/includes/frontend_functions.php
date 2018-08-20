@@ -44,7 +44,7 @@ function is_bot() {
 }
 
 /*  Perzgjidh adsin ne varesi te CTR-s  */
-function adsSelector( $ad1_ctr, $ad2_ctr, $ad3_ctr, $random_number ) {
+function adsSelector( $ad1_ctr, $ad2_ctr, $random_number ) {
 	if ( $random_number <= $ad1_ctr ) {
 		$ad_to_show = 'ad1';
 	} else if ( $random_number <= ( $ad1_ctr + $ad2_ctr ) ) {
@@ -120,7 +120,8 @@ function GetVisitsCounterAndSetCookie() {
 	} else {
 		$count = ++ $cookieValue;
 	}
-	setcookie( "visit", $count, time() + ( 24 * 60 * 60 * 1000 ), "/" );
+
+	setcookie( "visit", $count, time() + ( 24 * 60 * 60 ), "/" );
 
 	return $count;
 }
