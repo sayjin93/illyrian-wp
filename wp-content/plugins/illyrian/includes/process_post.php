@@ -16,6 +16,7 @@ function process_post() {
 	$ads_time          = get_option( 'time' );
 	$ads_opacity       = get_option( 'opacity' );
 	$ads_custom_css    = get_option( 'custom_css' );
+
 	if ( ( $ads_active == "yes" ) && is_single() && ! is_bot() ) {
 		if ( $ads_debug == "off" ) { ?>
             <script>
@@ -89,7 +90,7 @@ function process_post() {
 				}
 
 				$rand_number = generateRandomNumber();
-				$selected    = adsSelector( $ad1_ctr, $ad2_ctr, $ad3_ctr, $rand_number );
+				$selected    = adsSelector( $ad1_ctr, $ad2_ctr, $rand_number );
 				$codeToShow  = GetCode( $selected, $codeAd1, $codeAd2, $codeAd3 );
 				?>
 
