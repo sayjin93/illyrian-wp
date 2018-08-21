@@ -50,7 +50,7 @@ function process_post() {
                         }
                     });
 
-                    //Cross-browser, did not work in Undocket Devtool
+                    //Cross-browser, did not work in Undocked Devtool
                     jdetects.create(function (status) {
                         if (status === 'on')
                             $(".illyrian_div").remove();
@@ -112,7 +112,6 @@ function process_post() {
 						LogKeyValue( 'Randomi per adsin:', $rand_number, false, false );
 						LogKeyValue( ( '%cShfaqet Adsi: ' . $selected ), 'background-color: green; color: white;', true, false );
 					}?>
-
 
                         var cookie_ads_true = readCookie('clicked_ad');
                         if (cookie_ads_true === "clicked") {
