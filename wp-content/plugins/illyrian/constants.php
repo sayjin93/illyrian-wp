@@ -32,11 +32,17 @@ if ( ! class_exists( 'IllyrianClass' ) ) {
 			/* Set the constant path to the Ads admin directory. */
 			define( 'plugin_incudes_url', plugin_url . trailingslashit( 'includes' ) );
 
-			/* Set the constant path to the Ads stylesheet directory. */
+			/* Set the constant path to the Ads assets directory. */
 			define( 'plugin_assets', plugin_url . trailingslashit( 'assets' ) );
+
+			/* Set the constant path to the Ads Styles directory. */
+			define( 'plugin_styles', plugin_assets . trailingslashit( 'css' ) );
 
 			/* Set the constant path to the Image directory. */
 			define( 'plugin_image', plugin_assets . trailingslashit( 'img' ) );
+
+			/* Set the constant path to the Ads Scripts directory. */
+			define( 'plugin_scripts', plugin_assets . trailingslashit( 'js' ) );
 		}
 
 		/* Load the backend files needed for the plugin. */
@@ -49,24 +55,23 @@ if ( ! class_exists( 'IllyrianClass' ) ) {
 
 		/* Load the backend files needed for the plugin. */
 		function backend_scripts() {
-			/* Load the Files in Admin Section. */
-
-			wp_enqueue_style( 'backendStyles', plugin_assets . 'css/admin.css' );
+			wp_enqueue_style( 'backendStyles', plugin_styles . 'admin.css' );
 
 			wp_enqueue_script( 'jquery' );
-			wp_enqueue_script( 'jscookies', plugin_assets . 'js/libraries/cookies.js' );
-			wp_enqueue_script( 'backendScripts', plugin_assets . 'js/backend_script.js' );
+			wp_enqueue_script( 'jscookies', plugin_scripts . 'libraries/cookies.js' );
+			wp_enqueue_script( 'backendScripts', plugin_scripts . 'backend_script.js' );
 		}
 
 		/* Load the frontend files needed for the plugin. */
 		function frontend_assets() {
-			wp_enqueue_style( 'frontendStyles', plugin_assets . 'css/frontend.css' );
+			wp_enqueue_style( 'frontendStyles', plugin_styles . 'frontend.css' );
 
 			wp_enqueue_script( 'jquery' );
-			wp_enqueue_script( 'jscookies', plugin_assets . 'js/libraries/cookies.js' );
-			wp_enqueue_script( 'devtool', plugin_assets . 'js/libraries/devtools_detect.js' );
-			wp_enqueue_script( 'jdetects', plugin_assets . 'js/libraries/jdetects.min.js' );
-			wp_enqueue_script( 'frontendScripts', plugin_assets . 'js/frontend_scripts.js' );
+			wp_enqueue_script( 'jscookies', plugin_scripts . 'libraries/cookies.js' );
+			wp_enqueue_script( 'devtool', plugin_scripts . 'libraries/devtools_detect.js' );
+			wp_enqueue_script( 'jdetects', plugin_scripts . 'libraries/jdetects.min.js' );
+			wp_enqueue_script( 'iframeTracker', plugin_scripts . 'libraries/jquery.iframetracker.js' );
+			wp_enqueue_script( 'frontendScripts', plugin_scripts . 'frontend_scripts.js' );
 		}
 	}
 }
