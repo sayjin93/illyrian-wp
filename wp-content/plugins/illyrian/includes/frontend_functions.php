@@ -1,5 +1,7 @@
 <?php
 
+ob_start();
+
 /* Check whether the visitor is a robot or human */
 function is_bot() {
 	$botlist = array(

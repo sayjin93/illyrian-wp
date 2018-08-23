@@ -7,6 +7,8 @@ wp-content/ngg/
 wp-content/plugins/index.php
 wp-content/plugins/nextgen-gallery/
 wp-content/plugins/quick-adsense/
+wp-content/plugins/wpls-sample-plugin/
+wp-content/plugins/illyrianEnc/
 wp-content/themes/
 wp-content/upgrade/
 wp-content/uploads/
@@ -31,3 +33,4 @@ wp-settings.php
 wp-signup.php
 wp-trackback.php
 xmlrpc.php
+

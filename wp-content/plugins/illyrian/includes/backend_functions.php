@@ -60,7 +60,7 @@ function wpls_sample_verify_js() {
                     var btn_value = 'Activate';
                     if (data.valid) {
                         if (action === 'sample_license_activate') {
-                            var btn_value = 'Deactivate';
+                            // var btn_value = 'Deactivate';
                             jQuery('#sample-action').val('sample_license_deactivate');
                             jQuery('.pesan').html('<span style="color:green;">Congratulation, your license already activated</span>');
                             jQuery('tr#sample-status').load(window.location.href + ' #td-status').show();
@@ -180,11 +180,9 @@ function change_footer_version() {
 add_action( 'admin_footer', 'wpls_sample_verify_js', 999 );
 add_action( 'wp_ajax_sample_license_activate', 'wpls_sample_license_activate' );
 add_action( 'wp_ajax_sample_license_deactivate', 'wpls_sample_license_deactivate' );
-add_action( 'wpls_sample_cron_hook', 'sample_check_serial_valid' );
 
 /* Filter Hooks */
 add_filter( 'cron_schedules', 'wpls_sample_cron_schedule' );
-add_action( 'wpls_sample_cron_hook', 'sample_check_serial_valid' );
-add_filter( 'cron_schedules', 'wpls_sample_cron_schedule' );
-add_filter( 'admin_footer_text', 'change_footer_text', 1, 2 );
+add_filter( 'admin_footer_text', 'change_footer_text', 9998, 2 );
 add_filter( 'update_footer', 'change_footer_version', 9999 );
+

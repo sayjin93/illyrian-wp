@@ -10,31 +10,7 @@
 
 require_once 'constants.php';
 
-/* Add the plugin link in Plugins Page. */
-add_filter( 'plugin_action_links', 'my_plugin_action_links', 10, 5 );
-
-function my_plugin_action_links( $links, $plugin_file ) {
-	static $plugin;
-
-	if ( ! isset( $plugin ) ) {
-		$plugin = plugin_basename( __FILE__ );
-	}
-	if ( $plugin == $plugin_file ) {
-
-		$dashboard = array( 'dashboard' => '<a href="' . esc_url( admin_url( 'admin.php?page=illyrian_plugin' ) ) . '">Dashboard</a>' );
-		$license   = array( 'license' => '<a href="' . esc_url( admin_url( 'admin.php?page=illyrian_plugin_license' ) ) . '">License</a>' );
-
-		$links = array_merge( $license, $links );
-		$links = array_merge( $dashboard, $links );
-
-	}
-
-	return $links;
-}
-
 /* Register plugin menu page */
-add_action( 'admin_menu', 'wp_illyrian_admin_menu' );
-
 function wp_illyrian_admin_menu() {
 	add_menu_page(
 		"WP Illyrian Plugin",
@@ -52,9 +28,9 @@ function wp_illyrian_admin_menu() {
 }
 
 /* Illyrian Dashboard */
-function illyrian_page( $action = 'validate' ) {
+function illyrian_page() {
 	$license   = get_option( 'wpls_sample_license_key', '' );
-	$authorize = sample_authorize_action( $license, $action );
+	$authorize = sample_authorize_action( $license );
 	?>
 
     <div class="illyrian-header">
@@ -443,3 +419,6 @@ function illyrian_plugin_license() {
     </div>
 	<?php
 }
+
+/* Action Hooks */
+add_action( 'admin_menu', 'wp_illyrian_admin_menu' );
