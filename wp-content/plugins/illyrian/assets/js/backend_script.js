@@ -10,8 +10,7 @@ $(document).ready(function () {
     var codeAd3 = $('textarea[name="codeAd3"]');
 
 
-    limitAd1.keyup(function () {
-
+    function checkAd2and3() {
         var limitAd1Value = limitAd1.val();
 
         if (limitAd1Value >= 100) {
@@ -30,9 +29,9 @@ $(document).ready(function () {
             codeAd2.prop('disabled', false);
             codeAd3.prop('disabled', false);
         }
-    });
+    }
 
-    limitAd2.keyup(function () {
+    function checkAd3() {
         var limitAd1Value = parseInt(limitAd1.val());
         var limitAd2Value = parseInt(limitAd2.val());
 
@@ -56,33 +55,23 @@ $(document).ready(function () {
             limitAd3.val(100 - total).prop('disabled', false);
             codeAd3.prop('disabled', false);
         }
+    }
+
+    limitAd1.keyup(function () {
+        checkAd2and3();
+
     });
 
-    limitAd3.keyup(function () {
-        var limitAd1Value = parseInt(limitAd1.val());
-        var limitAd2Value = parseInt(limitAd2.val());
-        var limitAd3Value = parseInt(limitAd3.val());
-
-        if (isNaN(limitAd1Value)) {
-            limitAd1Value = 0;
-        }
-
-        if (isNaN(limitAd2Value)) {
-            limitAd2Value = 0;
-        }
-
-        if (isNaN(limitAd3Value)) {
-            limitAd3Value = 0;
-        }
-
-        var total = limitAd1Value + limitAd2Value + limitAd3Value;
-
-        if (total >= 100) {
-            limitAd3.val(100 - limitAd1Value - limitAd2Value);
-        }
+    limitAd2.keyup(function () {
+        checkAd3();
     });
+
+    checkAd2and3();
+    checkAd3();
+
 
 });
+
 
 /*  Delete cookies when Clear Cookies button is clicked  */
 function ClearCookies() {
