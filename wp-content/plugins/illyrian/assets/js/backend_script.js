@@ -72,7 +72,6 @@ $(document).ready(function () {
 
 });
 
-
 /*  Delete cookies when Clear Cookies button is clicked  */
 function ClearCookies() {
     eraseCookie('visit');
