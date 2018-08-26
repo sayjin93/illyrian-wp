@@ -24,19 +24,22 @@ body.illyrian-plugin_page_illyrian_plugin_license #wpcontent {
 }
 
 .form-table tr.header {
-    margin: 0;
-    padding: 5px 0 5px 10px;
-    line-height: 35px;
-    font-size: 13px;
+    line-height: 30px;
     font-weight: 500;
-    text-decoration: none;
     color: #7f8591;
     background-color: #f7f8fa;
-    border: 1px solid #e4e9ee;
 }
 
 .form-table td {
+    display: inline-block;
+    margin: 0;
     padding: 5px 10px;
+    line-height: 40px;
+    vertical-align: top;
+}
+
+.form-table tr.header td {
+    line-height: initial;
 }
 
 /*Header*/
@@ -129,7 +132,7 @@ body.illyrian-plugin_page_illyrian_plugin_license #wpcontent {
 }
 
 .illyrian-settings-pages .form-table tr {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px dashed #ddd;
 }
 
 .illyrian-settings-pages .form-table tr:last-child {
@@ -143,34 +146,30 @@ body.illyrian-plugin_page_illyrian_plugin_license #wpcontent {
 }
 
 .illyrian-settings-pages .form-table th {
+    padding: 5px 10px;
+    min-width: 200px;
+    line-height: 40px;
+    color: #7f8591;
     font-size: 13px;
     background-color: #f7f8fa;
-    font-weight: 500;
-    line-height: 45px;
-    width: 200px;
-    margin: 0;
-    padding: 5px 0 5px 10px;
-    text-decoration: none;
-    color: #7f8591;
-    border-bottom: 1px solid #e4e9ee;
-    border-right: 1px solid #e4e9ee;
+    box-sizing: border-box;
+    border-right: 1px dashed #e4e9ee;
 }
 
 .illyrian-settings-pages .form-table .description {
     color: #7f8592;
     font-size: 13px;
-    margin-top: 10px;
 }
 
 .illyrian-settings-pages .button {
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    padding: 0 15px;
+    margin-bottom: 0;
     height: 33px;
     font-weight: 600;
     -webkit-box-shadow: none;
     box-shadow: none;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 }
 
 /*Notification*/
@@ -184,8 +183,9 @@ body.illyrian-plugin_page_illyrian_plugin_license #wpcontent {
     background-clip: padding-box;
     box-sizing: border-box;
     display: table;
-    width: 100%;
     margin: 10px 0;
+    width: 100%;
+
 }
 
 .illyrian-success-notice {
@@ -214,4 +214,38 @@ body.illyrian-plugin_page_illyrian_plugin_license #wpcontent {
     content: "";
     display: table;
     clear: both;
+}
+
+/*Mobile Phone Screens*/
+@media screen and (max-width: 782px) {
+
+    .illyrian-settings-pages .form-table {
+        border: none;
+    }
+
+    .illyrian-settings-pages .form-table > tbody > tr {
+        display: block;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+    }
+
+    .illyrian-settings-pages .form-table > tbody > tr:last-of-type {
+        display: block;
+        border: none;
+    }
+
+    .illyrian-settings-pages .form-table th {
+        padding: 0 10px;
+        width: 100%;
+        line-height: 30px;
+        border-right: none;
+    }
+
+    .illyrian-settings-pages .form-table td {
+        line-height: 30px;
+    }
+
+    .illyrian-settings-pages .form-table td.p0 {
+        padding: 0;
+    }
 }

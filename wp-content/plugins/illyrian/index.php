@@ -5,7 +5,7 @@
     Description: ClickJacking plugin in every element you want.
     Author: Jurgen Kruja
     Author URI: https://jkruja.com/
-    Version: 1.1
+    Version: 1.2
 */
 
 require_once 'constants.php';
@@ -213,20 +213,27 @@ function illyrian_page() {
                                             <td>
                                                 <label>Ad1 CTR (in %)</label>
                                             </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p0">
+                                                <input type="number" name="limitAd1" id="limitAd1"
+                                                       value="<?php echo get_option( 'limitAd1' ); ?>">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table>
+                                        <tr class="header">
                                             <td>
                                                 <label>Ad1 Code</label>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                <input type="number" name="limitAd1" id="limitAd1"
-                                                       value="<?php echo get_option( 'limitAd1' ); ?>">
-                                            </td>
-
-                                            <td><textarea rows="4" cols="100"
+                                            <td class="p0">
+                                                <textarea rows="4" cols="100"
                                                           name="codeAd1"><?php echo stripslashes( get_option( 'codeAd1' ) ); ?></textarea>
                                             </td>
-
                                         </tr>
                                     </table>
                                 </td>
@@ -241,20 +248,27 @@ function illyrian_page() {
                                             <td>
                                                 <label>Ad2 CTR (in %)</label>
                                             </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p0">
+                                                <input type="number" name="limitAd2" id="limitAd2"
+                                                       value="<?php echo get_option( 'limitAd2' ); ?>">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table>
+                                        <tr class="header">
                                             <td>
                                                 <label>Ad2 Code</label>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                <input type="number" name="limitAd2" id="limitAd2"
-                                                       value="<?php echo get_option( 'limitAd2' ); ?>">
-                                            </td>
-
-                                            <td><textarea rows="4" cols="100"
+                                            <td class="p0">
+                                                <textarea rows="4" cols="100"
                                                           name="codeAd2"><?php echo stripslashes( get_option( 'codeAd2' ) ); ?></textarea>
                                             </td>
-
                                         </tr>
                                     </table>
                                 </td>
@@ -269,20 +283,27 @@ function illyrian_page() {
                                             <td>
                                                 <label>Ad3 CTR (in %)</label>
                                             </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p0">
+                                                <input type="number" name="limitAd3" id="limitAd3"
+                                                       value="<?php echo get_option( 'limitAd3' ); ?>">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table>
+                                        <tr class="header">
                                             <td>
                                                 <label>Ad3 Code</label>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                <input type="number" name="limitAd3" id="limitAd3"
-                                                       value="<?php echo get_option( 'limitAd3' ); ?>">
-                                            </td>
-
-                                            <td><textarea rows="4" cols="100"
+                                            <td class="p0">
+                                                <textarea rows="4" cols="100"
                                                           name="codeAd3"><?php echo stripslashes( get_option( 'codeAd3' ) ); ?></textarea>
                                             </td>
-
                                         </tr>
                                     </table>
                                 </td>
