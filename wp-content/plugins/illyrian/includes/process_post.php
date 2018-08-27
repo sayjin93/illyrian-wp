@@ -17,14 +17,6 @@ function process_post() {
 	$ads_opacity       = get_option( 'opacity' );
 	$ads_custom_css    = get_option( 'custom_css' );
 
-	if ( $ads_debug == "on" ) {
-		if ( is_bot() == true ) {
-			echo "<script>console.log( 'Robots are not allowed!' );</script>";
-		} else {
-			echo "<script>console.log( 'Welcome human!' );</script>";
-		}
-	}
-
 	if ( ( $ads_active == "yes" ) && is_single() && ! is_bot() ) {
 		if ( $ads_debug == "off" ) { ?>
             <script>
@@ -67,6 +59,12 @@ function process_post() {
                 });
             </script>
 			<?php
+		} else {
+			if ( is_bot() == true ) {
+				echo "<script>console.log( 'Robots are not allowed!' );</script>";
+			} else {
+				echo "<script>console.log( 'Welcome human!' );</script>";
+			}
 		}
 
 		if ( $ads_element_value != '' ) {

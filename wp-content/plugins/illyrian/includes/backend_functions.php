@@ -173,7 +173,7 @@ function change_footer_text() {
 }
 
 function change_footer_version() {
-	return 'Version 1.2';
+	return 'Illyrian v1.2';
 }
 
 /* Action Hooks */
