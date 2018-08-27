@@ -21,26 +21,12 @@ function is_bot() {
 		'adsbot-google'
 	);
 
-	/*Using The WordPress Debug Log*/
-	if ( ! function_exists( 'write_log' ) ) {
-		function write_log( $log ) {
-			if ( is_array( $log ) || is_object( $log ) ) {
-				error_log( print_r( $log, true ) );
-			} else {
-				error_log( $log );
-			}
-		}
-	}
-
 	/* This function will check whether the visitor is a search engine robot */
 	foreach ( $botlist as $bot ) {
 		if ( stripos( $_SERVER['HTTP_USER_AGENT'], $bot ) !== false ) {
-			write_log( "Eshte Robot" );
-
 			return true;
 		}
 	}
-	write_log( "Eshte Rob" );
 
 	return false;
 }
