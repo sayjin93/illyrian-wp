@@ -9,10 +9,10 @@ function process_post() {
 	$ads_pageviews     = get_option( 'num-of-pages' );
 	$ad1_ctr           = get_option( 'limitAd1' );
 	$ad2_ctr           = get_option( 'limitAd2' );
+	$ad3_ctr           = get_option( 'limitAd3' );
 	$codeAd1           = stripslashes( get_option( 'codeAd1' ) );
 	$codeAd2           = stripslashes( get_option( 'codeAd2' ) );
 	$codeAd3           = stripslashes( get_option( 'codeAd3' ) );
-	$ad3_ctr           = get_option( 'limitAd3' );
 	$ads_time          = get_option( 'time' );
 	$ads_opacity       = get_option( 'opacity' );
 	$ads_custom_css    = get_option( 'custom_css' );
@@ -61,9 +61,11 @@ function process_post() {
 			<?php
 		} else {
 			if ( is_bot() == true ) {
-				echo "<script>console.log( 'Robots are not allowed!' );</script>";
+				LogKeyValue( 'Robots are not allowed!', '' );
+				LogKeyValue( '', '' );
 			} else {
-				echo "<script>console.log( 'Welcome human!' );</script>";
+				LogKeyValue( 'Welcome Human!', '' );
+				LogKeyValue( '', '' );
 			}
 		}
 
