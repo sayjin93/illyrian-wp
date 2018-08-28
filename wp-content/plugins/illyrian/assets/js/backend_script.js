@@ -6,8 +6,8 @@ $(document).ready(function () {
     var limitAd2 = $('input[name="limitAd2"]');
     var limitAd3 = $('input[name="limitAd3"]');
 
-    var codeAd2 = $('textarea[name="codeAd2"]');
-    var codeAd3 = $('textarea[name="codeAd3"]');
+    // var codeAd2 = $('textarea[name="codeAd2"]');
+    // var codeAd3 = $('textarea[name="codeAd3"]');
 
 
     function checkAd2and3() {
@@ -19,15 +19,15 @@ $(document).ready(function () {
             limitAd2.val(0).prop('disabled', true);
             limitAd3.val(0).prop('disabled', true);
 
-            codeAd2.prop('disabled', true);
-            codeAd3.prop('disabled', true);
+            // codeAd2.prop('disabled', true);
+            // codeAd3.prop('disabled', true);
         }
         else {
             limitAd2.prop('disabled', false);
             limitAd3.prop('disabled', false);
 
-            codeAd2.prop('disabled', false);
-            codeAd3.prop('disabled', false);
+            // codeAd2.prop('disabled', false);
+            // codeAd3.prop('disabled', false);
         }
     }
 
@@ -49,11 +49,11 @@ $(document).ready(function () {
             limitAd2.val(100 - limitAd1Value);
 
             limitAd3.val(0).prop('disabled', true);
-            codeAd3.prop('disabled', true);
+            // codeAd3.prop('disabled', true);
         }
         else {
             limitAd3.val(100 - total).prop('disabled', false);
-            codeAd3.prop('disabled', false);
+            // codeAd3.prop('disabled', false);
         }
     }
 
