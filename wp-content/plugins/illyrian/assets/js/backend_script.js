@@ -1,6 +1,4 @@
-var $ = jQuery;
-
-$(document).ready(function () {
+jQuery(document).ready(function ($) {
 
     var limitAd1 = $('input[name="limitAd1"]');
     var limitAd2 = $('input[name="limitAd2"]');
@@ -68,7 +66,6 @@ $(document).ready(function () {
 
     checkAd2and3();
     checkAd3();
-
 
 });
 

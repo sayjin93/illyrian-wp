@@ -185,4 +185,3 @@ add_action( 'wp_ajax_sample_license_deactivate', 'wpls_sample_license_deactivate
 add_filter( 'cron_schedules', 'wpls_sample_cron_schedule' );
 add_filter( 'admin_footer_text', 'change_footer_text', 9998, 2 );
 add_filter( 'update_footer', 'change_footer_version', 9999 );
-
