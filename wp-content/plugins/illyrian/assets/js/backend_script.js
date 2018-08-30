@@ -68,9 +68,3 @@ jQuery(document).ready(function ($) {
     checkAd3();
 
 });
-
-/*  Delete cookies when Clear Cookies button is clicked  */
-function ClearCookies() {
-    eraseCookie('visit');
-    eraseCookie('clicked_ad');
-}

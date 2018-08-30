@@ -2,7 +2,7 @@
 
 ob_start();
 
-/* Check whether the visitor is a robot or human */
+/*  Check whether the visitor is a robot or human */
 function is_bot() {
 	$botlist = array(
 		'Googlebot',
@@ -29,6 +29,21 @@ function is_bot() {
 	}
 
 	return false;
+}
+
+/*  Delete cookies when Clear Cookies button is clicked  */
+function ClearCookies() {
+
+	if ( isset( $_COOKIE['visit'] ) || isset( $_COOKIE['clicked_ad'] ) ) {
+		unset( $_COOKIE['visit'] );
+		unset( $_COOKIE['clicked_ad'] );
+		setcookie( 'visit', null, - 1, '/' );
+		setcookie( 'clicked_ad', null, - 1, '/' );
+
+		return true;
+	} else {
+		return false;
+	}
 }
 
 /*  Choose ads depending CTR  */
