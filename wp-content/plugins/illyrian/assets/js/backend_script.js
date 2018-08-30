@@ -7,7 +7,6 @@ jQuery(document).ready(function ($) {
     // var codeAd2 = $('textarea[name="codeAd2"]');
     // var codeAd3 = $('textarea[name="codeAd3"]');
 
-
     function checkAd2and3() {
         var limitAd1Value = limitAd1.val();
 

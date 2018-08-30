@@ -110,7 +110,9 @@ function illyrian_page() {
 						<?php
 					}
 					if ( isset( $_POST['clearCookies'] ) && $_POST['action'] == 'form_submit' ) {
+
 						ClearCookies();//call function to clear cookies
+
 						?>
                         <div class="illyrian-notice illyrian-info-notice">
                             <div class="illyrian-notice-text illyrian-info-notice-text">
