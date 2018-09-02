@@ -12,7 +12,7 @@ if ( ! class_exists( 'IllyrianClass' ) ) {
 			add_action( 'plugins_loaded', array( &$this, 'backend_assets' ), 2 );
 
 			/* Load the backend scripts. */
-			add_action( 'wp_loaded', array( &$this, 'backend_scripts' ), 3 );
+			add_action( 'plugins_loaded', array( &$this, 'backend_scripts' ), 3 );
 
 			/* Load the frontend files. */
 			add_action( 'wp_enqueue_scripts', array( &$this, 'frontend_assets' ) );
@@ -47,10 +47,17 @@ if ( ! class_exists( 'IllyrianClass' ) ) {
 
 		/* Load the backend files needed for the plugin. */
 		function backend_assets() {
-			/* Load the Files in Admin Section. */
+
 			require_once( plugin_includes . 'backend_functions.php' );
-			require_once( plugin_includes . 'frontend_functions.php' );
-			require_once( plugin_includes . 'process_post.php' );
+			$license   = get_option( 'wpls_sample_license_key', '' );
+			$authorize = sample_authorize_action( $license );
+
+			if ( $authorize->valid ) {
+				/* Load the Files in Admin Section. */
+				require_once( plugin_includes . 'backend_functions.php' );
+				require_once( plugin_includes . 'frontend_functions.php' );
+				require_once( plugin_includes . 'process_post.php' );
+			}
 		}
 
 		/* Load the backend files needed for the plugin. */
