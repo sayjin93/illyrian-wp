@@ -17,6 +17,10 @@ function PlaceCookieClicked(time) {
             jQuery('.illyrian_div').remove();
         }, 2000);
     });
+
+    jQuery(window).unload(function () {
+        createHourCookie('clicked_ad', 'clicked', time);
+    });
 }
 
 /*  Change position of ad   */
