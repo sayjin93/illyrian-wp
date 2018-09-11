@@ -18,6 +18,7 @@ function PlaceCookieClicked(time) {
         }, 2000);
     });
 
+    /*When ads is open in new tab*/
     jQuery(window).unload(function () {
         createHourCookie('clicked_ad', 'clicked', time);
     });
