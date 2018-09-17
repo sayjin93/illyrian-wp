@@ -125,17 +125,21 @@ function process_post() {
                         if (cookie_ads_true === "clicked") {
                             jQuery('.illyrian_div').remove();
                         }
+                        else {
 
+                            jQuery('.illyrian_div iframe').iframeTracker({
+                                blurCallback: function (event) {
+									<?php if ( $ads_debug == "on" ) {
+									echo 'console.log( "You have clicked the Ads" );';
+								}?>
+                                    createHourCookie('clicked_ad', 'clicked', <?php echo $ads_time; ?>);
+                                    setTimeout(function () {
+                                        jQuery('.illyrian_div').remove();
+                                    }, 2000);
+                                }
+                            });
+                        }
                     });
-
-                    /* Creating cookie for click on ads */
-                    jQuery(".illyrian_div").mouseover(function () {
-						<?php if ( $ads_debug == "on" ) {
-						echo 'console.log( "Mouse over Ads" );';
-					}?>
-                        PlaceCookieClicked(<?php echo $ads_time; ?>);
-                    });
-
                 </script>
 
 				<?php
