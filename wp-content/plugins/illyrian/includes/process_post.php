@@ -18,7 +18,24 @@ function process_post() {
 	$ads_opacity       = get_option( 'opacity' );
 	$ads_custom_css    = get_option( 'custom_css' );
 
+	/*  Check whether the visitor is a Robot or Human */
+	if ( is_bot() == true ) {
+		if ( $ads_debug == "on" ) {
+			LogKeyValue( 'You are a Robot!', '' );
+			LogKeyValue( '%cScripti nuk eshte aktiv.', 'background-color: red; color: white;', true );
+		}
+	} else {
+		if ( $ads_debug == "on" ) {
+			LogKeyValue( 'Welcome Human!', '' );
+			LogKeyValue( '', '' );
+		}
+	}
+
+
+	/* Check if Script is Active and is Single Post and is not Robot */
 	if ( ( $ads_active == "yes" ) && is_single() && ! is_bot() ) {
+
+		/* If Debug mode is Off, block Devtools from opening */
 		if ( $ads_debug == "off" ) { ?>
             <script>
                 $(document).ready(function () {
@@ -60,31 +77,28 @@ function process_post() {
                 });
             </script>
 			<?php
-		} else {
-			if ( is_bot() == true ) {
-				LogKeyValue( 'Robots are not allowed!', '' );
-				LogKeyValue( '', '' );
-			} else {
-				LogKeyValue( 'Welcome Human!', '' );
-				LogKeyValue( '', '' );
-			}
 		}
 
-		if ( ( $hide_shqipet == "yes" ) && ( is_shqipe( "Visitor" ) == "AL" || is_shqipe( "Visitor" ) == "RS" || is_shqipe( "Visitor" ) == "MK" ) ) {
+		/* Check if visitor is from Al, RS or MK */
+		$array = array( 'AL', 'RS', 'MK' );
+
+		if ( ( $hide_shqipet == "yes" ) && ( in_array( is_shqipe(), $array ) ) ) {
 			if ( $ads_debug == "on" ) {
-				LogKeyValue( 'Country code:', is_shqipe( "Visitor" ) );
-				LogKeyValue( 'Vizitor shqiptar', '' );
-				LogKeyValue( '', '' );
+				LogKeyValue( 'Country of IP:', is_shqipe() );
+				LogKeyValue( 'Vizitor i ndaluar', '' );
+				LogKeyValue( '%cScripti nuk eshte aktiv.', 'background-color: red; color: white;', true );
 			}
 		} else {
 			if ( $ads_debug == "on" ) {
-				LogKeyValue( 'Country code:', is_shqipe( "Visitor" ) );
-				LogKeyValue( 'Vizitor jo shqiptar', '' );
+				LogKeyValue( 'Country of IP:', is_shqipe() );
+				LogKeyValue( 'Vizitor i lejuar', '' );
 				LogKeyValue( '', '' );
 			}
+
+			/* Check if element you want to put Ad is not empty */
 			if ( $ads_element_value != '' ) {
 
-				/*Check if number of pageviews is reached*/
+				/* Check if number of pageviews is reached */
 				$count = GetVisitsCounterAndSetCookie();
 
 				if ( $ads_debug == "on" ) {
@@ -92,13 +106,16 @@ function process_post() {
 					LogKeyValue( "Vizituar:", $count );
 				}
 
+				/* Check conditions of ads showing */
 				$random_number = generateRandomNumber();
 				$show_add      = DefineShowAd( $count, $ads_pageviews, $ads_debug, $random_number, $scriptCTR );
 
 				if ( $show_add == true ) {
-					/*Element where ads will be place*/
+
+					/* Element where ads will be place */
 					$mylink = getSelectorClassOrId( $ads_element );
 
+					/* Log to Console each Ad CTR */
 					if ( $ads_debug == "on" ) {
 						$toConsole = array(
 							"Ad1 CTR:" => $ad1_ctr,
@@ -108,12 +125,21 @@ function process_post() {
 						LogArray( $toConsole );
 					}
 
+					/* Select ads should show*/
 					$rand_number = generateRandomNumber();
 					$selected    = adsSelector( $ad1_ctr, $ad2_ctr, $rand_number );
 					$codeToShow  = GetCode( $selected, $codeAd1, $codeAd2, $codeAd3 );
 					?>
 
                     <style type="text/css">
+                        .illyrian_div {
+                            display: none;
+                            position: absolute;
+                            width: 300px;
+                            height: 250px;
+                            z-index: 999
+                        }
+
                         <?php echo $ads_custom_css; ?>
                     </style>
 
@@ -156,16 +182,14 @@ function process_post() {
                     </script>
 
 					<?php
-				} // if show_add == false
-			} // end of main condition
-
-			else {
+				}
+			} else {
 				if ( $ads_debug == "on" ) {
 					LogKeyValue( '%cSettings nuk jane plotesuar sic duhet. Scripti nuk eshte aktiv.', 'background-color: red; color: white;', true );
 				}
 			}
-		}//check if visitor is from AL or RS or MK
-	} // if plugin is active
-} // end function process_post
+		}
+	}
+}
 
 add_action( 'wp_head', 'process_post' );

@@ -70,8 +70,6 @@ if ( ! class_exists( 'IllyrianClass' ) ) {
 
 		/* Load the frontend files needed for the plugin. */
 		function frontend_assets() {
-			wp_enqueue_style( 'frontendStyles', plugin_styles . 'frontend.css' );
-
 			wp_enqueue_script( 'jquery' );
 			wp_enqueue_script( 'iframetracker', plugin_scripts . 'libraries/jquery.iframetracker.js' );
 			wp_enqueue_script( 'jscookies', plugin_scripts . 'libraries/cookies.js' );

@@ -2,7 +2,7 @@
 
 ob_start();
 
-/*  Check whether the visitor is a robot or human */
+/*  Check whether the visitor is a Robot or Human */
 function is_bot() {
 	$botlist = array(
 		'Googlebot',
@@ -31,7 +31,7 @@ function is_bot() {
 	return false;
 }
 
-/* Check if visitor is Shqipe */
+/* Check if visitor is from Al, RS or MK */
 function is_shqipe( $ip = null ) {
 	$output = null;
 	if ( filter_var( $ip, FILTER_VALIDATE_IP ) === false ) {
@@ -51,21 +51,6 @@ function is_shqipe( $ip = null ) {
 	$output = @$ipdat->geoplugin_countryCode;
 
 	return $output;
-}
-
-/*  Delete cookies when Clear Cookies button is clicked  */
-function ClearCookies() {
-
-	if ( isset( $_COOKIE['visit'] ) || isset( $_COOKIE['clicked_ad'] ) ) {
-		unset( $_COOKIE['visit'] );
-		unset( $_COOKIE['clicked_ad'] );
-		setcookie( 'visit', null, - 1, '/' );
-		setcookie( 'clicked_ad', null, - 1, '/' );
-
-		return true;
-	} else {
-		return false;
-	}
 }
 
 /*  Choose ads depending CTR  */

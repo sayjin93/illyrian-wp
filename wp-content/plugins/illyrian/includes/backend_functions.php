@@ -173,7 +173,22 @@ function change_footer_text() {
 }
 
 function change_footer_version() {
-	return 'Illyrian v1.2';
+	return 'Illyrian v1.2.1';
+}
+
+/*  Delete cookies when Clear Cookies button is clicked  */
+function ClearCookies() {
+
+	if ( isset( $_COOKIE['visit'] ) || isset( $_COOKIE['clicked_ad'] ) ) {
+		unset( $_COOKIE['visit'] );
+		unset( $_COOKIE['clicked_ad'] );
+		setcookie( 'visit', null, - 1, '/' );
+		setcookie( 'clicked_ad', null, - 1, '/' );
+
+		return true;
+	} else {
+		return false;
+	}
 }
 
 /* Action Hooks */
