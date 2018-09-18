@@ -178,7 +178,6 @@ function change_footer_version() {
 
 /*  Delete cookies when Clear Cookies button is clicked  */
 function ClearCookies() {
-
 	if ( isset( $_COOKIE['visit'] ) || isset( $_COOKIE['clicked_ad'] ) ) {
 		unset( $_COOKIE['visit'] );
 		unset( $_COOKIE['clicked_ad'] );

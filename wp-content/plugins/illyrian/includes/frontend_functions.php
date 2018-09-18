@@ -32,7 +32,7 @@ function is_bot() {
 }
 
 /* Check if visitor is from Al, RS or MK */
-function is_shqipe( $ip = null ) {
+function is_blockedCountry( $ip = null ) {
 	$output = null;
 	if ( filter_var( $ip, FILTER_VALIDATE_IP ) === false ) {
 		$ip = $_SERVER["REMOTE_ADDR"];

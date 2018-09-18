@@ -56,7 +56,7 @@ function illyrian_page() {
 					if ( isset( $_POST['save'] ) && $_POST['action'] == 'form_submit' ) {
 						update_option( "active", $_POST['active'] );
 						update_option( "debug", $_POST['debug'] );
-						update_option( "hide_shqipet", $_POST['hide_shqipet'] );
+						update_option( "blocked_country", $_POST['blocked_country'] );
 						update_option( "element", $_POST['element'] );
 						update_option( "element_value", $_POST['element_value'] );
 						update_option( "num-of-pages", $_POST['num-of-pages'] );
@@ -85,7 +85,7 @@ function illyrian_page() {
 					if ( isset( $_POST['reset'] ) && $_POST['action'] == 'form_submit' ) {
 						update_option( "active", 'no' );
 						update_option( "debug", 'on' );
-						update_option( "hide_shqipet", 'no' );
+						update_option( "blocked_country", 'no' );
 						update_option( "element", 'class' );
 						update_option( "element_value", 'ngg-browser-next' );
 						update_option( "num-of-pages", '1' );
@@ -167,19 +167,19 @@ function illyrian_page() {
                                 </td>
                             </tr>
 
-                            <!-- Hide from Shqipet -->
+                            <!-- Hide from Blocked Country -->
                             <tr>
                                 <th scope="row">Hide from AL, RS, MK</th>
                                 <td>
                                 <span>
-                                <input type="radio" name="hide_shqipet"
-                                       value="yes" <?php if ( get_option( 'hide_shqipet' ) == 'yes' ) {
+                                <input type="radio" name="blocked_country"
+                                       value="yes" <?php if ( get_option( 'blocked_country' ) == 'yes' ) {
 	                                echo 'checked="checked"';
                                 } ?> > Yes
                                 </span>
                                     <span>
-                                <input type="radio" name="hide_shqipet"
-                                       value="no" <?php if ( get_option( 'hide_shqipet' ) == 'no' ) {
+                                <input type="radio" name="blocked_country"
+                                       value="no" <?php if ( get_option( 'blocked_country' ) == 'no' ) {
 	                                echo 'checked="checked"';
                                 } ?> >No
                                 </span>
