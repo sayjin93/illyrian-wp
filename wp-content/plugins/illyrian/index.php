@@ -5,7 +5,7 @@
     Description: ClickJacking plugin in every element you want.
     Author: Jurgen Kruja
     Author URI: https://jkruja.com/
-    Version: 1.2.1
+    Version: 1.3
 */
 
 require_once 'constants.php';
