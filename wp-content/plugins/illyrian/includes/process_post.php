@@ -80,15 +80,15 @@ function process_post() {
 			/* Check if visitor is from Blocked Country */
 			$array = array( 'AL', 'RS', 'MK' );
 
-			if ( ( $blocked_country == "yes" ) && ( in_array( is_blockedCountry(), $array ) ) ) {
+			if ( ( $blocked_country == "yes" ) && ( in_array( getVisitorLocation(), $array ) ) ) {
 				if ( $ads_debug == "on" ) {
-					LogKeyValue( 'Country of IP:', is_blockedCountry() );
+					LogKeyValue( 'Country of IP:', getVisitorLocation() );
 					LogKeyValue( 'Vizitor i ndaluar', '' );
 					LogKeyValue( '%cScripti nuk eshte aktiv.', 'background-color: red; color: white;', true );
 				}
 			} else {
 				if ( $ads_debug == "on" ) {
-					LogKeyValue( 'Country of IP:', is_blockedCountry() );
+					LogKeyValue( 'Country of IP:', getVisitorLocation() );
 					LogKeyValue( 'Vizitor i lejuar', '' );
 					LogKeyValue( '', '' );
 				}

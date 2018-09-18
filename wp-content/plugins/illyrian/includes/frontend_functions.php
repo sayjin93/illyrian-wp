@@ -31,8 +31,8 @@ function is_bot() {
 	return false;
 }
 
-/* Check if visitor is from Al, RS or MK */
-function is_blockedCountry( $ip = null ) {
+/* Get visitor IP address and return country code */
+function getVisitorLocation( $ip = null ) {
 	$output = null;
 	if ( filter_var( $ip, FILTER_VALIDATE_IP ) === false ) {
 		$ip = $_SERVER["REMOTE_ADDR"];
@@ -48,7 +48,11 @@ function is_blockedCountry( $ip = null ) {
 
 	$ipdat = @json_decode( file_get_contents( "http://www.geoplugin.net/json.gp?ip=" . $ip ) );
 
-	$output = @$ipdat->geoplugin_countryCode;
+	if ( ( @$ipdat->geoplugin_request == "::1" ) || ( @$ipdat->geoplugin_request == "127.0.0.1" ) ) {
+		$output = "Localhost";
+	} else {
+		$output = @$ipdat->geoplugin_countryCode;
+	}
 
 	return $output;
 }
