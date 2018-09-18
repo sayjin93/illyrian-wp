@@ -12,7 +12,7 @@ if ( ! class_exists( 'IllyrianClass' ) ) {
 			add_action( 'plugins_loaded', array( &$this, 'backend_assets' ), 2 );
 
 			/* Load the backend scripts. */
-			add_action( 'plugins_loaded', array( &$this, 'backend_scripts' ), 3 );
+			add_action( 'admin_enqueue_scripts', array( &$this, 'backend_scripts' ) );
 
 			/* Load the frontend files. */
 			add_action( 'wp_enqueue_scripts', array( &$this, 'frontend_assets' ) );
