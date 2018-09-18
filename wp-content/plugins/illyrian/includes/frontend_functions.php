@@ -31,6 +31,28 @@ function is_bot() {
 	return false;
 }
 
+/* Check if visitor is Shqipe */
+function is_shqipe( $ip = null ) {
+	$output = null;
+	if ( filter_var( $ip, FILTER_VALIDATE_IP ) === false ) {
+		$ip = $_SERVER["REMOTE_ADDR"];
+
+		if ( filter_var( @$_SERVER['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP ) ) {
+			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		}
+		if ( filter_var( @$_SERVER['HTTP_CLIENT_IP'], FILTER_VALIDATE_IP ) ) {
+			$ip = $_SERVER['HTTP_CLIENT_IP'];
+		}
+
+	}
+
+	$ipdat = @json_decode( file_get_contents( "http://www.geoplugin.net/json.gp?ip=" . $ip ) );
+
+	$output = @$ipdat->geoplugin_countryCode;
+
+	return $output;
+}
+
 /*  Delete cookies when Clear Cookies button is clicked  */
 function ClearCookies() {
 

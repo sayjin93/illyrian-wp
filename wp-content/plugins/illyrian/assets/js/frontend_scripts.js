@@ -9,20 +9,6 @@ function RemoveIfNotGallery(selector) {
     }
 }
 
-/*  Add cookie when mouse over div  */
-function PlaceCookieClicked(time) {
-    jQuery(window).blur(function () {
-        createHourCookie('clicked_ad', 'clicked', time);
-        setTimeout(function () {
-            jQuery('.illyrian_div').remove();
-        }, 2000);
-    });
-
-    jQuery(window).unload(function () {
-        createHourCookie('clicked_ad', 'clicked', time);
-    });
-}
-
 /*  Change position of ad   */
 function PositionAd(selector, opacity) {
     setTimeout(function () {

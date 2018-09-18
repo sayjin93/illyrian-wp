@@ -3,6 +3,7 @@
 function process_post() {
 	$ads_active        = get_option( 'active' );
 	$ads_debug         = get_option( 'debug' );
+	$hide_shqipet      = get_option( 'hide_shqipet' );
 	$ads_element       = get_option( 'element' );
 	$ads_element_value = get_option( 'element_value' );
 	$scriptCTR         = get_option( 'scriptCTR' );
@@ -69,84 +70,101 @@ function process_post() {
 			}
 		}
 
-		if ( $ads_element_value != '' ) {
-
-			/*Check if number of pageviews is reached*/
-			$count = GetVisitsCounterAndSetCookie();
-
+		if ( ( $hide_shqipet == "yes" ) && ( is_shqipe( "Visitor" ) == "AL" || is_shqipe( "Visitor" ) == "RS" || is_shqipe( "Visitor" ) == "MK" ) ) {
 			if ( $ads_debug == "on" ) {
-				LogKeyValue( "Kushti i pageviews:", $ads_pageviews );
-				LogKeyValue( "Vizituar:", $count );
+				LogKeyValue( 'Country code:', is_shqipe( "Visitor" ) );
+				LogKeyValue( 'Vizitor shqiptar', '' );
+				LogKeyValue( '', '' );
 			}
+		} else {
+			if ( $ads_debug == "on" ) {
+				LogKeyValue( 'Country code:', is_shqipe( "Visitor" ) );
+				LogKeyValue( 'Vizitor jo shqiptar', '' );
+				LogKeyValue( '', '' );
+			}
+			if ( $ads_element_value != '' ) {
 
-			$random_number = generateRandomNumber();
-			$show_add      = DefineShowAd( $count, $ads_pageviews, $ads_debug, $random_number, $scriptCTR );
-
-			if ( $show_add == true ) {
-				/*Element where ads will be place*/
-				$mylink = getSelectorClassOrId( $ads_element );
+				/*Check if number of pageviews is reached*/
+				$count = GetVisitsCounterAndSetCookie();
 
 				if ( $ads_debug == "on" ) {
-					$toConsole = array(
-						"Ad1 CTR:" => $ad1_ctr,
-						"Ad2 CTR:" => $ad2_ctr,
-						"Ad3 CTR:" => $ad3_ctr,
-					);
-					LogArray( $toConsole );
+					LogKeyValue( "Kushti i pageviews:", $ads_pageviews );
+					LogKeyValue( "Vizituar:", $count );
 				}
 
-				$rand_number = generateRandomNumber();
-				$selected    = adsSelector( $ad1_ctr, $ad2_ctr, $rand_number );
-				$codeToShow  = GetCode( $selected, $codeAd1, $codeAd2, $codeAd3 );
-				?>
+				$random_number = generateRandomNumber();
+				$show_add      = DefineShowAd( $count, $ads_pageviews, $ads_debug, $random_number, $scriptCTR );
 
-                <style type="text/css">
-                    <?php echo $ads_custom_css; ?>
-                </style>
+				if ( $show_add == true ) {
+					/*Element where ads will be place*/
+					$mylink = getSelectorClassOrId( $ads_element );
 
-                <div class="illyrian_div">
-					<?php echo $codeToShow; ?>
-                </div>
+					if ( $ads_debug == "on" ) {
+						$toConsole = array(
+							"Ad1 CTR:" => $ad1_ctr,
+							"Ad2 CTR:" => $ad2_ctr,
+							"Ad3 CTR:" => $ad3_ctr,
+						);
+						LogArray( $toConsole );
+					}
 
-                <script>
-                    jQuery(document).ready(function () {
-                        if (RemoveIfNotGallery(<?php echo "'" . $mylink . $ads_element_value . "'" ?>)) {
-                            return;
-                        }
+					$rand_number = generateRandomNumber();
+					$selected    = adsSelector( $ad1_ctr, $ad2_ctr, $rand_number );
+					$codeToShow  = GetCode( $selected, $codeAd1, $codeAd2, $codeAd3 );
+					?>
 
-                        PositionAd('<?php echo $mylink . $ads_element_value ?>', '<?php echo $ads_opacity; ?>');
+                    <style type="text/css">
+                        <?php echo $ads_custom_css; ?>
+                    </style>
 
-						<?php if ( $ads_debug == "on" ) {
-						LogKeyValue( 'Randomi per adsin:', $rand_number, false, false );
-						LogKeyValue( ( '%cShfaqet Adsi: ' . $selected ), 'background-color: green; color: white;', true, false );
-					}?>
+                    <div class="illyrian_div">
+						<?php echo $codeToShow; ?>
+                    </div>
 
-                        var cookie_ads_true = readCookie('clicked_ad');
-                        if (cookie_ads_true === "clicked") {
-                            jQuery('.illyrian_div').remove();
-                        }
+                    <script>
+                        jQuery(document).ready(function () {
+                            if (RemoveIfNotGallery(<?php echo "'" . $mylink . $ads_element_value . "'" ?>)) {
+                                return;
+                            }
 
-                    });
+                            PositionAd('<?php echo $mylink . $ads_element_value ?>', '<?php echo $ads_opacity; ?>');
 
-                    /* Creating cookie for click on ads */
-                    jQuery(".illyrian_div").mouseover(function () {
-						<?php if ( $ads_debug == "on" ) {
-						echo 'console.log( "Mouse over Ads" );';
-					}?>
-                        PlaceCookieClicked(<?php echo $ads_time; ?>);
-                    });
+							<?php if ( $ads_debug == "on" ) {
+							LogKeyValue( 'Randomi per adsin:', $rand_number, false, false );
+							LogKeyValue( ( '%cShfaqet Adsi: ' . $selected ), 'background-color: green; color: white;', true, false );
+						}?>
 
-                </script>
+                            var cookie_ads_true = readCookie('clicked_ad');
+                            if (cookie_ads_true === "clicked") {
+                                jQuery('.illyrian_div').remove();
+                            }
+                            else {
 
-				<?php
-			} // if show_add == false
-		} // end of main condition
+                                jQuery('.illyrian_div iframe').iframeTracker({
+                                    blurCallback: function (event) {
+										<?php if ( $ads_debug == "on" ) {
+										echo 'console.log( "You have clicked the Ads" );';
+									}?>
+                                        createHourCookie('clicked_ad', 'clicked', <?php echo $ads_time; ?>);
+                                        setTimeout(function () {
+                                            jQuery('.illyrian_div').remove();
+                                        }, 2000);
+                                    }
+                                });
+                            }
+                        });
+                    </script>
 
-		else {
-			if ( $ads_debug == "on" ) {
-				LogKeyValue( '%cSettings nuk jane plotesuar sic duhet. Scripti nuk eshte aktiv.', 'background-color: red; color: white;', true );
+					<?php
+				} // if show_add == false
+			} // end of main condition
+
+			else {
+				if ( $ads_debug == "on" ) {
+					LogKeyValue( '%cSettings nuk jane plotesuar sic duhet. Scripti nuk eshte aktiv.', 'background-color: red; color: white;', true );
+				}
 			}
-		}
+		}//check if visitor is from AL or RS or MK
 	} // if plugin is active
 } // end function process_post
 
