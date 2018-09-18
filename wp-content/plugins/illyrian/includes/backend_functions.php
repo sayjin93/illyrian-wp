@@ -7,7 +7,7 @@ set_site_transient( 'update_plugins', null );
 define( 'WPLS_SAMPLE_STORE_URL', 'https://jkruja.com' ); // you should use your own CONSTANT server url, and be sure to replace it throughout this file
 
 // The product code of your product. This should match the download name in WPLS exactly
-define( 'WPLS_SAMPLE_ITEM_CODE', 'illyrianWP' ); // you should use your own CONSTANT CODE, and be sure to replace it throughout this file
+define( 'WPLS_SAMPLE_ITEM_CODE', 'illyrian' ); // you should use your own CONSTANT CODE, and be sure to replace it throughout this file
 
 function sample_authorize_action( $purchase_code = '', $action = 'validate' ) {
 	$domain     = home_url();
