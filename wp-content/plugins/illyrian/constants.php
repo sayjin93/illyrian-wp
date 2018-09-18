@@ -54,7 +54,6 @@ if ( ! class_exists( 'IllyrianClass' ) ) {
 
 			if ( $authorize->valid ) {
 				/* Load the Files in Admin Section. */
-				require_once( plugin_includes . 'backend_functions.php' );
 				require_once( plugin_includes . 'frontend_functions.php' );
 				require_once( plugin_includes . 'process_post.php' );
 			}
