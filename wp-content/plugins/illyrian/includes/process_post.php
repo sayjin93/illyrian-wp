@@ -36,7 +36,7 @@ function process_post() {
 			/* If Debug mode is Off, block Devtools from opening */
 			if ( $ads_debug == "off" ) { ?>
                 <script>
-                    $(document).ready(function () {
+                    jQuery(document).ready(function ($) {
 
                         /*Prevent Opening DevTools*/
                         $(document).keydown(function (event) {
