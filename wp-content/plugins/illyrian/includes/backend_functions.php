@@ -173,7 +173,7 @@ function change_footer_text() {
 }
 
 function change_footer_version() {
-	return 'Illyrian v1.3';
+	return 'Illyrian v1.3.1';
 }
 
 /*  Delete cookies when Clear Cookies button is clicked  */

@@ -5,7 +5,7 @@
     Description: ClickJacking plugin in every element you want.
     Author: Jurgen Kruja
     Author URI: https://jkruja.com/
-    Version: 1.3
+    Version: 1.3.1
 */
 
 require_once 'constants.php';
@@ -57,6 +57,7 @@ function illyrian_page() {
 						update_option( "active", $_POST['active'] );
 						update_option( "debug", $_POST['debug'] );
 						update_option( "blocked_country", $_POST['blocked_country'] );
+						update_option( "whitelisted_ip", $_POST['whitelisted_ip'] );
 						update_option( "element", $_POST['element'] );
 						update_option( "element_value", $_POST['element_value'] );
 						update_option( "num-of-pages", $_POST['num-of-pages'] );
@@ -86,6 +87,7 @@ function illyrian_page() {
 						update_option( "active", 'no' );
 						update_option( "debug", 'on' );
 						update_option( "blocked_country", 'no' );
+						update_option( "whitelisted_ip", '127.0.0.1' );
 						update_option( "element", 'class' );
 						update_option( "element_value", 'ngg-browser-next' );
 						update_option( "num-of-pages", '1' );
@@ -182,6 +184,11 @@ function illyrian_page() {
                                        value="no" <?php if ( get_option( 'blocked_country' ) == 'no' ) {
 	                                echo 'checked="checked"';
                                 } ?> >No
+                                </span>
+                                    <span>
+                                <input type="text" name="whitelisted_ip" id="whitelisted_ip"
+                                       value="<?php echo get_option( 'whitelisted_ip' ); ?>">
+                                        <p class="description inline">Add IP to whitelist.</p>
                                 </span>
                                 </td>
                             </tr>

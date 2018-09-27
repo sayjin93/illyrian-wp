@@ -46,12 +46,17 @@ function getVisitorLocation( $ip = null ) {
 
 	}
 
-	$ipdat = @json_decode( file_get_contents( "http://www.geoplugin.net/json.gp?ip=" . $ip ) );
+	$ipdat      = file_get_contents( "https://ip2c.org/?ip=" . $ip );
+	$iplocation = explode( ';', $ipdat );
 
-	if ( ( @$ipdat->geoplugin_request == "::1" ) || ( @$ipdat->geoplugin_request == "127.0.0.1" ) ) {
+	$whitelisted_ip = get_option( 'whitelisted_ip' );
+
+	if ( ( $ip == "::1" ) || ( $ip == "127.0.0.1" ) ) {
 		$output = "Localhost";
+	} else if ( $ip == $whitelisted_ip ) {
+		$output = $iplocation[1] . " (IP Whitelisted)";
 	} else {
-		$output = @$ipdat->geoplugin_countryCode;
+		$output = $iplocation[1];
 	}
 
 	return $output;

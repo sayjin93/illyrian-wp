@@ -142,6 +142,7 @@ body.illyrian-plugin_page_illyrian_plugin_license #wpcontent {
 .illyrian-settings-pages .form-table tr span {
     display: inline-block;
     min-width: 70px;
+    vertical-align: middle;
 }
 
 .illyrian-settings-pages .form-table th {
@@ -158,6 +159,10 @@ body.illyrian-plugin_page_illyrian_plugin_license #wpcontent {
 .illyrian-settings-pages .form-table .description {
     color: #7f8592;
     font-size: 13px;
+}
+
+.illyrian-settings-pages .form-table .description.inline {
+    display: inline-block;
 }
 
 .illyrian-settings-pages .button {
