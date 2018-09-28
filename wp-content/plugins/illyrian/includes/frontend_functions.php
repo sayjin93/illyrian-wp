@@ -32,29 +32,38 @@ function is_bot() {
 }
 
 /* Get visitor IP address and return country code */
-function getVisitorLocation( $ip = null ) {
+function getVisitorLocation() {
 	$output = null;
-	if ( filter_var( $ip, FILTER_VALIDATE_IP ) === false ) {
+
+	if ( empty( $_SERVER["HTTP_X_FORWARDED_FOR"] ) ) {
 		$ip = $_SERVER["REMOTE_ADDR"];
-
-		if ( filter_var( @$_SERVER['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP ) ) {
-			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-		}
-		if ( filter_var( @$_SERVER['HTTP_CLIENT_IP'], FILTER_VALIDATE_IP ) ) {
-			$ip = $_SERVER['HTTP_CLIENT_IP'];
-		}
-
+	} else {
+		$ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+	}
+	if ( strpos( $ip, ',' ) !== false ) {
+		$ip = explode( ',', $ip );
+		$ip = $ip[0];
+	}
+	if ( $ip ) {
+		substr_replace( $ip, 0, - 1 );
 	}
 
-	$ipdat      = file_get_contents( "https://ip2c.org/?ip=" . $ip );
-	$iplocation = explode( ';', $ipdat );
+	$url = stripos( $_SERVER['SERVER_PROTOCOL'], 'https' ) === true ? 'https://' : 'http://' . "ip2c.org/?ip=" . $ip;
+
+	$ch = curl_init();
+	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+	curl_setopt( $ch, CURLOPT_URL, $url );
+	$res = curl_exec( $ch );
+	curl_close( $ch );
+
+	$iplocation = explode( ';', $res );
 
 	$whitelisted_ip = get_option( 'whitelisted_ip' );
 
 	if ( ( $ip == "::1" ) || ( $ip == "127.0.0.1" ) ) {
 		$output = "Localhost";
 	} else if ( $ip == $whitelisted_ip ) {
-		$output = $iplocation[1] . " (IP Whitelisted)";
+		$output = $iplocation[1] . " ( IP Whitelisted)";
 	} else {
 		$output = $iplocation[1];
 	}
@@ -115,15 +124,15 @@ function LogArray( $array ) {
 /*  Log single line to console  */
 function LogKeyValue( $key, $value, $withColors = false, $includeTags = true ) {
 	if ( $includeTags ) {
-		echo "<script>";
+		echo " <script>";
 	}
 	if ( ! $withColors ) {
-		echo( "console.log('$key " . $value . "');" );
+		echo( "console.log( '$key " . $value . "' );" );
 	} else {
-		echo( "console.log('$key ','" . $value . "');" );
+		echo( "console.log( '$key ', '" . $value . "' );" );
 	}
 	if ( $includeTags ) {
-		echo "</script>";
+		echo " </script> ";
 	}
 }
 
@@ -140,7 +149,7 @@ function GetVisitsCounterAndSetCookie() {
 		$count = ++ $cookieValue;
 	}
 
-	setcookie( "visit", $count, time() + ( 24 * 60 * 60 ), "/" );
+	setcookie( "visit", $count, time() + ( 24 * 60 * 60 ), " / " );
 
 	return $count;
 }
