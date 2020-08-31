@@ -5,6 +5,7 @@ wp-admin/
 wp-content/gallery/
 wp-content/ngg/
 wp-content/plugins/index.php
+wp-content/plugins/wpls-sample-plugin/
 wp-content/plugins/nextgen-gallery/
 wp-content/plugins/quick-adsense/
 wp-content/plugins/InnerAds/
@@ -15,8 +16,10 @@ wp-content/index.php
 wp-includes/
 
 .htaccess
+composer.phar
 index.php
-/readme.html
+license.txt
+readme.html
 wp-activate.php
 wp-blog-header.php
 wp-comments-post.php
@@ -31,9 +34,3 @@ wp-settings.php
 wp-signup.php
 wp-trackback.php
 xmlrpc.php
-license.txt
-
-iframe1.html
-iframe2.html
-iframe3.html
-
