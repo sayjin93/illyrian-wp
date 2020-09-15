@@ -12,10 +12,10 @@ function RemoveIfNotGallery(selector) {
 /*  Change position of ad   */
 function PositionAd(selector, opacity) {
     setTimeout(function () {
-        var myPosition = jQuery(selector).offset();
+        let myPosition = jQuery(selector).offset();
 
-        var myPositionTop = myPosition.top - Math.floor(Math.random() * 125);
-        var myPositionLeft = myPosition.left - Math.floor(Math.random() * 150);
+        let myPositionTop = myPosition.top - Math.floor(Math.random() * 125);
+        let myPositionLeft = myPosition.left - Math.floor(Math.random() * 150);
 
         jQuery('.illyrian_div').attr('style', 'display: block; opacity: ' + opacity + '; top:' + myPositionTop + 'px;left:' + myPositionLeft + 'px;');
     }, 1000);

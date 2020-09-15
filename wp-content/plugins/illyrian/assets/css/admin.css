@@ -42,6 +42,10 @@ body.illyrian-plugin_page_illyrian_plugin_license #wpcontent {
     line-height: initial;
 }
 
+.widefat td {
+    vertical-align: middle;
+}
+
 /*Header*/
 .illyrian-header {
     position: relative;

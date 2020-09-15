@@ -1,4 +1,4 @@
-<?php
+<?php defined( 'ABSPATH' ) or exit( 'No direct script access allowed' );
 
 ob_start();
 
@@ -149,7 +149,7 @@ function GetVisitsCounterAndSetCookie() {
 		$count = ++ $cookieValue;
 	}
 
-	setcookie( "visit", $count, time() + ( 24 * 60 * 60 ), " / " );
+	setcookie( "visit", $count, time() + ( 24 * 60 * 60 ), "/", $_SERVER['SERVER_NAME'] );
 
 	return $count;
 }

@@ -1,14 +1,14 @@
 jQuery(document).ready(function ($) {
 
-    var limitAd1 = $('input[name="limitAd1"]');
-    var limitAd2 = $('input[name="limitAd2"]');
-    var limitAd3 = $('input[name="limitAd3"]');
+    let limitAd1 = $('input[name="limitAd1"]');
+    let limitAd2 = $('input[name="limitAd2"]');
+    let limitAd3 = $('input[name="limitAd3"]');
 
     // var codeAd2 = $('textarea[name="codeAd2"]');
     // var codeAd3 = $('textarea[name="codeAd3"]');
 
     function checkAd2and3() {
-        var limitAd1Value = limitAd1.val();
+        let limitAd1Value = limitAd1.val();
 
         if (limitAd1Value >= 100) {
             limitAd1.val(100);
@@ -18,8 +18,7 @@ jQuery(document).ready(function ($) {
 
             // codeAd2.prop('disabled', true);
             // codeAd3.prop('disabled', true);
-        }
-        else {
+        } else {
             limitAd2.prop('disabled', false);
             limitAd3.prop('disabled', false);
 
@@ -29,8 +28,8 @@ jQuery(document).ready(function ($) {
     }
 
     function checkAd3() {
-        var limitAd1Value = parseInt(limitAd1.val());
-        var limitAd2Value = parseInt(limitAd2.val());
+        let limitAd1Value = parseInt(limitAd1.val());
+        let limitAd2Value = parseInt(limitAd2.val());
 
         if (isNaN(limitAd1Value)) {
             limitAd1Value = 0;
@@ -40,15 +39,14 @@ jQuery(document).ready(function ($) {
             limitAd2Value = 0;
         }
 
-        var total = limitAd1Value + limitAd2Value;
+        let total = limitAd1Value + limitAd2Value;
 
         if (total >= 100) {
             limitAd2.val(100 - limitAd1Value);
 
             limitAd3.val(0).prop('disabled', true);
             // codeAd3.prop('disabled', true);
-        }
-        else {
+        } else {
             limitAd3.val(100 - total).prop('disabled', false);
             // codeAd3.prop('disabled', false);
         }

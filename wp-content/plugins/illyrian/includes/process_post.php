@@ -1,4 +1,4 @@
-<?php
+<?php defined( 'ABSPATH' ) or exit( 'No direct script access allowed' );
 
 function process_post() {
 	$ads_active        = get_option( 'active' );
@@ -42,11 +42,9 @@ function process_post() {
                         $(document).keydown(function (event) {
                             if (event.keyCode === 123) {
                                 return false;   //Prevent from f12
-                            }
-                            else if (event.ctrlKey && event.keyCode === 85) {
+                            } else if (event.ctrlKey && event.keyCode === 85) {
                                 return false;  //Prevent from ctrl+u
-                            }
-                            else if (event.ctrlKey && event.shiftKey && event.keyCode === 73) {
+                            } else if (event.ctrlKey && event.shiftKey && event.keyCode === 73) {
                                 return false;  //Prevent from ctrl+shift+i
                             }
                         });
@@ -60,8 +58,7 @@ function process_post() {
                         window.addEventListener('devtoolschange', function (e) {
                             if (e.detail.open) {
                                 $(".illyrian_div").remove();
-                            }
-                            else {
+                            } else {
                                 window.location.reload();
                             }
                         });
@@ -116,9 +113,9 @@ function process_post() {
 						/* Log to Console each Ad CTR */
 						if ( $ads_debug == "on" ) {
 							$toConsole = array(
-								"Ad1 CTR:" => $ad1_ctr,
-								"Ad2 CTR:" => $ad2_ctr,
-								"Ad3 CTR:" => $ad3_ctr,
+								"Ad1 CTR:" => $ad1_ctr . " % " . " (0" . "-" . $ad1_ctr . ")",
+								"Ad2 CTR:" => $ad2_ctr . " % " . " (" . ( $ad1_ctr + 1 ) . "-" . ( $ad1_ctr + $ad2_ctr ) . ")",
+								"Ad3 CTR:" => $ad3_ctr . " % " . " (" . ( $ad1_ctr + $ad2_ctr + 1 ) . "-" . ( $ad1_ctr + $ad2_ctr + $ad3_ctr ) . ")"
 							);
 							LogArray( $toConsole );
 						}
@@ -158,11 +155,10 @@ function process_post() {
 								LogKeyValue( ( '%cShfaqet Adsi: ' . $selected ), 'background-color: green; color: white;', true, false );
 							}?>
 
-                                var cookie_ads_true = readCookie('clicked_ad');
+                                let cookie_ads_true = readCookie('clicked_ad');
                                 if (cookie_ads_true === "clicked") {
                                     jQuery('.illyrian_div').remove();
-                                }
-                                else {
+                                } else {
 
                                     jQuery('.illyrian_div iframe').iframeTracker({
                                         blurCallback: function (event) {
